@@ -1,0 +1,343 @@
+{
+  "app": {
+    "name": "ریلیف کنیکٹ",
+    "tagline": "امدادی وسائل کے انتظام کا پلیٹ فارم",
+    "loading": "لوڈ ہو رہا ہے…",
+    "connecting": "سرور سے جڑ رہا ہے…",
+    "retry": "دوبارہ کوشش کریں",
+    "refreshPage": "صفحہ تازہ کریں",
+    "connectionNotReady": "کنکشن تیار نہیں",
+    "connectionError": "سرور تک رسائی ممکن نہیں۔ براہ کرم صفحہ تازہ کریں۔",
+    "locationDetected": "مقام مل گیا",
+    "detectingLocation": "مقام تلاش کیا جا رہا ہے…"
+  },
+  "nav": {
+    "signOut": "سائن آؤٹ",
+    "backButton": "پیچھے جائیں",
+    "forwardButton": "آگے جائیں",
+    "menuOpen": "مینو",
+    "menuClose": "بند کریں",
+    "citizen": {
+      "dashboard": "میری رپورٹیں",
+      "newRequest": "نئی درخواست",
+      "map": "نقشہ"
+    },
+    "ngo": {
+      "dashboard": "ڈیش بورڈ",
+      "requests": "کھلی درخواستیں",
+      "inventory": "انوینٹری",
+      "map": "نقشہ"
+    },
+    "admin": {
+      "dashboard": "جائزہ",
+      "users": "صارفین",
+      "ngos": "این جی اوز",
+      "requests": "تمام درخواستیں",
+      "analytics": "تجزیہ",
+      "map": "نقشہ"
+    },
+    "roles": { "citizen": "شہری", "ngo": "این جی او", "admin": "منتظم" },
+    "account": "اکاؤنٹ"
+  },
+  "login": {
+    "title": "ریلیف کنیکٹ",
+    "subtitle": "امدادی وسائل کے انتظام کا پلیٹ فارم",
+    "selectRole": "سائن ان کرنے کے لیے اپنا کردار منتخب کریں",
+    "newUser": "{{appName}} پر نئے ہیں؟",
+    "createAccount": "اکاؤنٹ بنائیں",
+    "backToRole": "کردار کے انتخاب پر واپس جائیں",
+    "alreadyRegistered": "پہلے سے رجسٹرڈ ہیں؟",
+    "signIn": "سائن ان",
+    "citizen": {
+      "label": "شہری",
+      "desc": "ضروریات رپورٹ کریں اور امداد ٹریک کریں",
+      "features": {
+        "0": "درخواستیں جمع کریں",
+        "1": "براہ راست نقشہ",
+        "2": "حالت کی اپڈیٹ"
+      },
+      "signIn": "سائن ان",
+      "title": "شہری سائن ان",
+      "subtitle": "اپنا رجسٹرڈ فون نمبر درج کریں",
+      "phoneLabel": "فون نمبر",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "شہری کے طور پر سائن ان کریں",
+      "signingIn": "سائن ان ہو رہا ہے…",
+      "noAccount": "اکاؤنٹ نہیں ہے؟",
+      "registerHere": "یہاں رجسٹر کریں",
+      "errorNotFound": "اس فون نمبر سے کوئی اکاؤنٹ نہیں ملا۔",
+      "errorGeneral": "لاگ ان ناکام۔",
+      "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+      "phoneRequired": "فون نمبر ضروری ہے"
+    },
+    "ngo": {
+      "label": "این جی او",
+      "desc": "امداد کی ہم آہنگی اور تقسیم کریں",
+      "features": {
+        "0": "درخواستیں دعوی کریں",
+        "1": "انوینٹری منظم کریں",
+        "2": "حالت اپڈیٹ کریں"
+      },
+      "signIn": "سائن ان",
+      "title": "این جی او سائن ان",
+      "subtitle": "اپنی تنظیم کی تفصیلات درج کریں",
+      "orgNameLabel": "تنظیم کا نام",
+      "orgNamePlaceholder": "ریڈ کراس — ممبئی",
+      "phoneLabel": "رابطہ فون",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "این جی او کے طور پر سائن ان کریں",
+      "signingIn": "سائن ان ہو رہا ہے…",
+      "noAccount": "اکاؤنٹ نہیں ہے؟",
+      "registerLink": "این جی او رجسٹر کریں",
+      "errorNotFound": "کوئی این جی او اکاؤنٹ نہیں ملا۔",
+      "errorGeneral": "لاگ ان ناکام۔",
+      "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+      "fieldsRequired": "تمام فیلڈز ضروری ہیں"
+    },
+    "admin": {
+      "label": "منتظم",
+      "desc": "آپریشنز کی نگرانی کریں",
+      "features": {
+        "0": "این جی اوز کی تصدیق کریں",
+        "1": "تجزیہ",
+        "2": "مکمل نگرانی"
+      },
+      "signIn": "سائن ان",
+      "title": "منتظم سائن ان",
+      "subtitle": "اپنی خفیہ چابی درج کریں",
+      "restricted": "صرف مجاز منتظمین کے لیے۔",
+      "secretKeyLabel": "خفیہ چابی",
+      "secretKeyPlaceholder": "اپنی خفیہ چابی درج کریں",
+      "submitButton": "منتظم ڈیش بورڈ تک رسائی حاصل کریں",
+      "verifying": "تصدیق ہو رہی ہے…",
+      "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+      "errorGeneral": "لاگ ان ناکام۔",
+      "secretKeyRequired": "خفیہ چابی ضروری ہے"
+    }
+  },
+  "register": {
+    "title": "{{appName}} سے جڑیں",
+    "subtitle": "شروع کرنے کے لیے اپنا کردار منتخب کریں۔",
+    "backToLogin": "لاگ ان پر واپس",
+    "alreadyRegistered": "پہلے سے رجسٹرڈ ہیں؟",
+    "signIn": "سائن ان",
+    "citizen": {
+      "title": "شہری",
+      "badge": "افراد کے لیے",
+      "desc": "امدادی ضروریات رپورٹ کریں۔",
+      "features": {
+        "0": "خوراک، پانی اور طبی درخواستیں",
+        "1": "GPS مقام شیئر کریں",
+        "2": "حالت ٹریک کریں",
+        "3": "آدھار/پین اعلان"
+      },
+      "registerButton": "شہری کے طور پر رجسٹر"
+    },
+    "ngo": {
+      "title": "این جی او / تنظیم",
+      "badge": "امدادی ٹیموں کے لیے",
+      "desc": "قریبی درخواستوں کا جواب دیں۔",
+      "features": {
+        "0": "نقشے پر درخواستیں دیکھیں",
+        "1": "وسائل بھیجیں",
+        "2": "انوینٹری منظم کریں",
+        "3": "خدمت علاقہ مقرر کریں"
+      },
+      "registerButton": "این جی او کے طور پر رجسٹر"
+    },
+    "admin": {
+      "title": "منتظم",
+      "badge": "OTP تصدیق شدہ",
+      "desc": "مکمل پلیٹ فارم نگرانی۔",
+      "features": {
+        "0": "صارفین اور این جی او انتظام",
+        "1": "براہ راست ٹریکنگ",
+        "2": "تجزیہ",
+        "3": "محفوظ رسائی"
+      },
+      "registerButton": "منتظم کے طور پر رجسٹر"
+    }
+  },
+  "registerUser": {
+    "title": "شہری رجسٹریشن",
+    "subtitle": "ضروریات رپورٹ کریں اور امداد ٹریک کریں",
+    "chooseRole": "مختلف کردار منتخب کریں",
+    "nameLabel": "پورا نام",
+    "namePlaceholder": "پریا شرما",
+    "phoneLabel": "فون نمبر",
+    "phonePlaceholder": "+91 98765 43210",
+    "locationLabel": "آپ کا مقام",
+    "locationDetected": "مقام مل گیا",
+    "locationPending": "مقام تلاش ہو رہا ہے…",
+    "identityTitle": "شناختی خود اعلان",
+    "identityOptional": "(اختیاری)",
+    "identityDesc": "شناخت ظاہر کرنے سے اعتماد بڑھتا ہے۔",
+    "aadhaarLabel": "میرے پاس درست آدھار کارڈ ہے",
+    "panLabel": "میرے پاس درست پین کارڈ ہے",
+    "submitButton": "شہری اکاؤنٹ بنائیں",
+    "registering": "رجسٹر ہو رہا ہے…",
+    "successMessage": "رجسٹریشن کامیاب! ریلیف کنیکٹ میں خوش آمدید۔",
+    "errorNameMin": "نام کم از کم 2 حروف کا ہونا چاہیے",
+    "errorPhone": "درست فون نمبر درج کریں",
+    "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+    "errorNetwork": "نیٹ ورک کی خرابی۔",
+    "errorGeneral": "رجسٹریشن ناکام۔"
+  },
+  "registerNGO": {
+    "title": "این جی او رجسٹریشن",
+    "subtitle": "امدادی درخواستوں کا جواب دینے کے لیے رجسٹر کریں",
+    "chooseRole": "مختلف کردار منتخب کریں",
+    "orgNameLabel": "تنظیم کا نام",
+    "orgNamePlaceholder": "ریڈ کراس — ممبئی",
+    "phoneLabel": "رابطہ فون",
+    "phonePlaceholder": "+91 98765 43210",
+    "serviceRadiusLabel": "خدمت دائرہ (km)",
+    "locationLabel": "آپ کا مقام",
+    "locationDetected": "مقام مل گیا",
+    "locationPending": "مقام تلاش ہو رہا ہے…",
+    "submitButton": "این جی او رجسٹر کریں",
+    "registering": "رجسٹر ہو رہا ہے…",
+    "successMessage": "این جی او رجسٹریشن کامیاب!",
+    "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+    "errorNetwork": "نیٹ ورک کی خرابی۔",
+    "errorGeneral": "رجسٹریشن ناکام۔"
+  },
+  "registerAdmin": {
+    "title": "منتظم رجسٹریشن",
+    "subtitle": "پلیٹ فارم منتظم کے طور پر رجسٹر کریں",
+    "chooseRole": "مختلف کردار منتخب کریں",
+    "secretKeyLabel": "منتظم خفیہ چابی",
+    "secretKeyPlaceholder": "خفیہ چابی درج کریں",
+    "submitButton": "منتظم کے طور پر رجسٹر",
+    "registering": "رجسٹر ہو رہا ہے…",
+    "successMessage": "منتظم رجسٹریشن کامیاب!",
+    "errorConnectionNotReady": "کنکشن تیار نہیں۔",
+    "errorGeneral": "رجسٹریشن ناکام۔"
+  },
+  "userDashboard": {
+    "title": "میرا ڈیش بورڈ",
+    "subtitle": "امدادی درخواست ٹریکر",
+    "newRequest": "نئی درخواست",
+    "allRequests": "تمام درخواستیں",
+    "nearestFirst": "قریب ترین پہلے",
+    "total": "کل",
+    "noRequests": "ابھی تک کوئی درخواست نہیں",
+    "noRequestsDesc": "جب آپ کو خوراک، پانی یا طبی مدد کی ضرورت ہو تو درخواست جمع کریں۔",
+    "submitFirst": "پہلی درخواست جمع کریں",
+    "requestReliefNow": "ابھی امداد طلب کریں",
+    "resourceTypes": "خوراک · پانی · طبی سامان",
+    "ngoResponse": "این جی اوز چند منٹوں میں جواب دیتے ہیں",
+    "emergencyNote": "ہنگامی حالت کے لیے — اپنی ضرورت بتائیں",
+    "stats": { "total": "کل", "active": "فعال", "delivered": "تقسیم شدہ" },
+    "verification": "تصدیق:",
+    "aadhaar": "آدھار",
+    "aadhaarPending": "آدھار (زیر التواء)",
+    "pan": "پین",
+    "panPending": "پین (زیر التواء)",
+    "handlingRequest": "آپ کی درخواست سنبھال رہا ہے",
+    "delivered": "تقسیم شدہ",
+    "unitsAway": "دور",
+    "units": "یونٹ"
+  },
+  "ngoDashboard": {
+    "title": "این جی او ڈیش بورڈ",
+    "subtitle": "آپریشنز کا جائزہ",
+    "live": "براہ راست",
+    "stats": {
+      "nearbyOpen": "قریبی کھلی",
+      "active": "فعال",
+      "inventoryUnits": "انوینٹری"
+    },
+    "activeTasks": "فعال کام",
+    "moreTasks": "+{{count}} مزید فعال کام",
+    "locationUnknown": "مقام نامعلوم",
+    "awayKm": "{{dist}} km دور",
+    "kmRadius": "{{radius}} km دائرہ",
+    "requests": "درخواستیں",
+    "requestsDesc": "قریبی کھلی درخواستیں دیکھیں",
+    "open": "کھلی",
+    "inventory": "انوینٹری",
+    "inventoryDesc": "اسٹاک کی سطح منظم کریں",
+    "stockOverview": "اسٹاک کا جائزہ"
+  },
+  "resources": {
+    "food": "خوراک",
+    "foodDesc": "کھانا، راشن، پیکڈ خوراک",
+    "water": "پانی",
+    "waterDesc": "پینے کا پانی، صفائی",
+    "medical": "طبی امداد",
+    "medicalDesc": "دوائیں، ابتدائی طبی امداد",
+    "other": "دیگر",
+    "otherDesc": "پناہ، کپڑے، سامان"
+  },
+  "urgency": {
+    "high": "زیادہ",
+    "highDesc": "جان کو خطرہ، فوری کارروائی ضروری",
+    "medium": "درمیانی",
+    "mediumDesc": "فوری، جلد توجہ دیں",
+    "low": "کم",
+    "lowDesc": "غیر فوری، انتظار کر سکتا ہے"
+  },
+  "status": {
+    "open": "کھلی",
+    "openDesc": "این جی او کے جواب کا انتظار",
+    "claimed": "دعوی کیا گیا",
+    "claimedDesc": "این جی او تیاری کر رہا ہے",
+    "inTransit": "راستے میں",
+    "inTransitDesc": "وسائل راستے میں ہیں",
+    "delivered": "تقسیم شدہ",
+    "deliveredDesc": "درخواست پوری ہوئی"
+  },
+  "shared": {
+    "locationPermission": {
+      "title": "مقام کو فعال کریں",
+      "desc": "قریبی امدادی مقامات دکھانے کے لیے مقام کی اجازت دیں۔",
+      "allow": "مقام کی اجازت دیں",
+      "dismiss": "بند کریں"
+    },
+    "emergency": {
+      "banner": "ہنگامی حالت؟ قومی آفات ہیلپ لائن کو کال کریں:",
+      "hotline": "1800-180-1253"
+    },
+    "map": "نقشہ",
+    "kmAway": "{{km}} km دور",
+    "mAway": "{{m}} m دور",
+    "aadhaar": "آدھار",
+    "pan": "پین",
+    "verified": "تصدیق شدہ",
+    "unverified": "زیر التواء"
+  },
+  "language": { "select": "زبان", "current": "موجودہ زبان" },
+  "ngoRequests": {
+    "title": "درخواستیں",
+    "subtitle": "کھلی اور فعال درخواستیں منظم کریں",
+    "tabOpen": "کھلی",
+    "tabMine": "میری فعال",
+    "tabAll": "سب",
+    "claim": "دعویٰ کریں",
+    "claiming": "دعویٰ ہو رہا ہے…",
+    "cancel": "منسوخ",
+    "updateStatus": "حالت اپ ڈیٹ کریں",
+    "markInTransit": "راستے میں نشان لگائیں",
+    "markDelivered": "تقسیم شدہ نشان لگائیں",
+    "noOpen": "قریب کوئی کھلی درخواست نہیں",
+    "noOpenSubtitle": "نئی درخواستیں یہاں خودبخود ظاہر ہوں گی",
+    "noMine": "کوئی فعال درخواست نہیں",
+    "noMineSubtitle": "شروع کرنے کے لیے قریبی درخواست پر دعویٰ کریں",
+    "kmAway": "{{km}} km دور",
+    "timeJustNow": "ابھی",
+    "timeMinAgo": "{{n}} منٹ پہلے",
+    "timeHourAgo": "{{n}} گھنٹے پہلے",
+    "timeDayAgo": "{{n}} دن پہلے",
+    "claimDesc": "آپ {{resourceType}} امداد (مقدار: {{qty}}) شہری تک پہنچانے کی ذمہ داری لے رہے ہیں۔",
+    "deliverDesc": "تصدیق کریں کہ آپ نے {{resourceType}} امداد شہری کو کامیابی سے پہنچا دی ہے۔",
+    "updateQuantity": "مکمل مقدار اپ ڈیٹ کریں",
+    "quantityLabel": "تقسیم شدہ مقدار",
+    "saveUpdate": "اپ ڈیٹ محفوظ کریں",
+    "saving": "محفوظ ہو رہا ہے…",
+    "claimSuccess": "درخواست پر دعویٰ کیا!",
+    "updateSuccess": "حالت اپ ڈیٹ ہوئی!",
+    "errorClaim": "درخواست پر دعویٰ ناکام۔",
+    "errorUpdate": "حالت اپ ڈیٹ ناکام۔"
+  }
+}

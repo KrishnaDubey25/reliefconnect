@@ -1,0 +1,347 @@
+{
+  "app": {
+    "name": "রিলিফকানেক্ট",
+    "tagline": "ত্রাণ সম্পদ ব্যবস্থাপনা প্ল্যাটফর্ম",
+    "loading": "লোড হচ্ছে…",
+    "connecting": "সার্ভারের সাথে সংযোগ হচ্ছে…",
+    "retry": "আবার চেষ্টা করুন",
+    "refreshPage": "পৃষ্ঠা রিফ্রেশ করুন",
+    "connectionNotReady": "সংযোগ প্রস্তুত নয়",
+    "connectionError": "সার্ভারে পৌঁছানো সম্ভব হয়নি। পৃষ্ঠা রিফ্রেশ করুন।",
+    "locationDetected": "অবস্থান সনাক্ত হয়েছে",
+    "detectingLocation": "অবস্থান সনাক্ত করা হচ্ছে…"
+  },
+  "nav": {
+    "signOut": "সাইন আউট",
+    "backButton": "পিছে যান",
+    "forwardButton": "সামনে যান",
+    "menuOpen": "মেনু",
+    "menuClose": "বন্ধ করুন",
+    "citizen": {
+      "dashboard": "আমার রিপোর্ট",
+      "newRequest": "নতুন অনুরোধ",
+      "map": "মানচিত্র"
+    },
+    "ngo": {
+      "dashboard": "ড্যাশবোর্ড",
+      "requests": "খোলা অনুরোধ",
+      "inventory": "ইনভেন্টরি",
+      "map": "মানচিত্র"
+    },
+    "admin": {
+      "dashboard": "সংক্ষিপ্ত বিবরণ",
+      "users": "ব্যবহারকারী",
+      "ngos": "এনজিও",
+      "requests": "সব অনুরোধ",
+      "analytics": "বিশ্লেষণ",
+      "map": "মানচিত্র"
+    },
+    "roles": { "citizen": "নাগরিক", "ngo": "এনজিও", "admin": "প্রশাসক" },
+    "account": "অ্যাকাউন্ট"
+  },
+  "login": {
+    "title": "রিলিফকানেক্ট",
+    "subtitle": "ত্রাণ সম্পদ ব্যবস্থাপনা প্ল্যাটফর্ম",
+    "selectRole": "সাইন ইন করতে আপনার ভূমিকা নির্বাচন করুন",
+    "newUser": "{{appName}}-এ নতুন?",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "backToRole": "ভূমিকা নির্বাচনে ফিরে যান",
+    "alreadyRegistered": "ইতিমধ্যে নিবন্ধিত?",
+    "signIn": "সাইন ইন করুন",
+    "citizen": {
+      "label": "নাগরিক",
+      "desc": "প্রয়োজনীয়তা রিপোর্ট করুন ও ত্রাণ ট্র্যাক করুন",
+      "features": {
+        "0": "অনুরোধ জমা দিন",
+        "1": "লাইভ মানচিত্র",
+        "2": "স্ট্যাটাস আপডেট"
+      },
+      "signIn": "সাইন ইন",
+      "title": "নাগরিক সাইন ইন",
+      "subtitle": "আপনার নিবন্ধিত ফোন নম্বর লিখুন",
+      "phoneLabel": "ফোন নম্বর",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "নাগরিক হিসেবে সাইন ইন করুন",
+      "signingIn": "সাইন ইন হচ্ছে…",
+      "noAccount": "অ্যাকাউন্ট নেই?",
+      "registerHere": "এখানে নিবন্ধন করুন",
+      "errorNotFound": "এই ফোন নম্বরে কোনো অ্যাকাউন্ট পাওয়া যায়নি।",
+      "errorGeneral": "লগইন ব্যর্থ হয়েছে।",
+      "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+      "phoneRequired": "ফোন নম্বর প্রয়োজন"
+    },
+    "ngo": {
+      "label": "এনজিও",
+      "desc": "সহায়তা সমন্বয় ও বিতরণ করুন",
+      "features": {
+        "0": "অনুরোধ দাবি করুন",
+        "1": "ইনভেন্টরি পরিচালনা করুন",
+        "2": "স্ট্যাটাস আপডেট করুন"
+      },
+      "signIn": "সাইন ইন",
+      "title": "এনজিও সাইন ইন",
+      "subtitle": "আপনার সংস্থার তথ্য লিখুন",
+      "orgNameLabel": "সংস্থার নাম",
+      "orgNamePlaceholder": "রেড ক্রস — মুম্বাই",
+      "phoneLabel": "যোগাযোগ ফোন",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "এনজিও হিসেবে সাইন ইন করুন",
+      "signingIn": "সাইন ইন হচ্ছে…",
+      "noAccount": "অ্যাকাউন্ট নেই?",
+      "registerLink": "এনজিও নিবন্ধন করুন",
+      "errorNotFound": "কোনো এনজিও অ্যাকাউন্ট পাওয়া যায়নি।",
+      "errorGeneral": "লগইন ব্যর্থ হয়েছে।",
+      "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+      "fieldsRequired": "সব ক্ষেত্র পূরণ করুন"
+    },
+    "admin": {
+      "label": "প্রশাসক",
+      "desc": "অপারেশন তত্ত্বাবধান করুন",
+      "features": {
+        "0": "এনজিও যাচাই করুন",
+        "1": "বিশ্লেষণ",
+        "2": "সম্পূর্ণ তত্ত্বাবধান"
+      },
+      "signIn": "সাইন ইন",
+      "title": "প্রশাসক সাইন ইন",
+      "subtitle": "আপনার গোপন চাবি লিখুন",
+      "restricted": "শুধুমাত্র অনুমোদিত প্রশাসকদের জন্য।",
+      "secretKeyLabel": "গোপন চাবি",
+      "secretKeyPlaceholder": "আপনার গোপন চাবি লিখুন",
+      "submitButton": "প্রশাসক ড্যাশবোর্ড খুলুন",
+      "verifying": "যাচাই হচ্ছে…",
+      "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+      "errorGeneral": "লগইন ব্যর্থ হয়েছে।",
+      "secretKeyRequired": "গোপন চাবি প্রয়োজন"
+    }
+  },
+  "register": {
+    "title": "{{appName}}-এ যোগ দিন",
+    "subtitle": "শুরু করতে আপনার ভূমিকা নির্বাচন করুন।",
+    "backToLogin": "লগইনে ফিরুন",
+    "alreadyRegistered": "ইতিমধ্যে নিবন্ধিত?",
+    "signIn": "সাইন ইন করুন",
+    "citizen": {
+      "title": "নাগরিক",
+      "badge": "ব্যক্তিদের জন্য",
+      "desc": "ত্রাণের প্রয়োজনীয়তা রিপোর্ট করুন।",
+      "features": {
+        "0": "খাদ্য, পানি ও চিকিৎসা অনুরোধ",
+        "1": "GPS অবস্থান ভাগ করুন",
+        "2": "স্ট্যাটাস ট্র্যাক করুন",
+        "3": "আধার/প্যান ঘোষণা"
+      },
+      "registerButton": "নাগরিক হিসেবে নিবন্ধন"
+    },
+    "ngo": {
+      "title": "এনজিও / সংস্থা",
+      "badge": "ত্রাণ দলের জন্য",
+      "desc": "কাছের অনুরোধে সাড়া দিন।",
+      "features": {
+        "0": "মানচিত্রে অনুরোধ দেখুন",
+        "1": "সম্পদ পাঠান",
+        "2": "ইনভেন্টরি পরিচালনা করুন",
+        "3": "সেবা এলাকা নির্ধারণ করুন"
+      },
+      "registerButton": "এনজিও হিসেবে নিবন্ধন"
+    },
+    "admin": {
+      "title": "প্রশাসক",
+      "badge": "ওটিপি যাচাইকৃত",
+      "desc": "সম্পূর্ণ প্ল্যাটফর্ম তত্ত্বাবধান।",
+      "features": {
+        "0": "ব্যবহারকারী ও এনজিও ব্যবস্থাপনা",
+        "1": "লাইভ ট্র্যাকিং",
+        "2": "বিশ্লেষণ",
+        "3": "নিরাপদ অ্যাক্সেস"
+      },
+      "registerButton": "প্রশাসক হিসেবে নিবন্ধন"
+    }
+  },
+  "registerUser": {
+    "title": "নাগরিক নিবন্ধন",
+    "subtitle": "প্রয়োজনীয়তা রিপোর্ট করুন ও ত্রাণ ট্র্যাক করুন",
+    "chooseRole": "অন্য ভূমিকা বেছে নিন",
+    "nameLabel": "পুরো নাম",
+    "namePlaceholder": "প্রিয়া শর্মা",
+    "phoneLabel": "ফোন নম্বর",
+    "phonePlaceholder": "+91 98765 43210",
+    "locationLabel": "আপনার অবস্থান",
+    "locationDetected": "অবস্থান সনাক্ত হয়েছে",
+    "locationPending": "অবস্থান খোঁজা হচ্ছে…",
+    "identityTitle": "পরিচয় স্ব-ঘোষণা",
+    "identityOptional": "(ঐচ্ছিক)",
+    "identityDesc": "পরিচয় ঘোষণা আস্থা বাড়ায়।",
+    "aadhaarLabel": "আমার একটি বৈধ আধার কার্ড আছে",
+    "panLabel": "আমার একটি বৈধ প্যান কার্ড আছে",
+    "submitButton": "নাগরিক অ্যাকাউন্ট তৈরি করুন",
+    "registering": "নিবন্ধন হচ্ছে…",
+    "successMessage": "নিবন্ধন সফল! রিলিফকানেক্টে স্বাগতম।",
+    "errorNameMin": "নাম কমপক্ষে ২ অক্ষরের হতে হবে",
+    "errorPhone": "বৈধ ফোন নম্বর লিখুন",
+    "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+    "errorNetwork": "নেটওয়ার্ক ত্রুটি।",
+    "errorGeneral": "নিবন্ধন ব্যর্থ হয়েছে।"
+  },
+  "registerNGO": {
+    "title": "এনজিও নিবন্ধন",
+    "subtitle": "ত্রাণ অনুরোধে সাড়া দিতে নিবন্ধন করুন",
+    "chooseRole": "অন্য ভূমিকা বেছে নিন",
+    "orgNameLabel": "সংস্থার নাম",
+    "orgNamePlaceholder": "রেড ক্রস — মুম্বাই",
+    "phoneLabel": "যোগাযোগ ফোন",
+    "phonePlaceholder": "+91 98765 43210",
+    "serviceRadiusLabel": "সেবা ব্যাসার্ধ (km)",
+    "locationLabel": "আপনার অবস্থান",
+    "locationDetected": "অবস্থান সনাক্ত হয়েছে",
+    "locationPending": "অবস্থান খোঁজা হচ্ছে…",
+    "submitButton": "এনজিও নিবন্ধন করুন",
+    "registering": "নিবন্ধন হচ্ছে…",
+    "successMessage": "এনজিও নিবন্ধন সফল!",
+    "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+    "errorNetwork": "নেটওয়ার্ক ত্রুটি।",
+    "errorGeneral": "নিবন্ধন ব্যর্থ হয়েছে।"
+  },
+  "registerAdmin": {
+    "title": "প্রশাসক নিবন্ধন",
+    "subtitle": "প্ল্যাটফর্ম প্রশাসক হিসেবে নিবন্ধন করুন",
+    "chooseRole": "অন্য ভূমিকা বেছে নিন",
+    "secretKeyLabel": "প্রশাসক গোপন চাবি",
+    "secretKeyPlaceholder": "গোপন চাবি লিখুন",
+    "submitButton": "প্রশাসক হিসেবে নিবন্ধন",
+    "registering": "নিবন্ধন হচ্ছে…",
+    "successMessage": "প্রশাসক নিবন্ধন সফল!",
+    "errorConnectionNotReady": "সংযোগ প্রস্তুত নয়।",
+    "errorGeneral": "নিবন্ধন ব্যর্থ হয়েছে।"
+  },
+  "userDashboard": {
+    "title": "আমার ড্যাশবোর্ড",
+    "subtitle": "ত্রাণ অনুরোধ ট্র্যাকার",
+    "newRequest": "নতুন অনুরোধ",
+    "allRequests": "সব অনুরোধ",
+    "nearestFirst": "নিকটতম প্রথম",
+    "total": "মোট",
+    "noRequests": "এখনও কোনো অনুরোধ নেই",
+    "noRequestsDesc": "খাদ্য, পানি বা চিকিৎসা সহায়তা প্রয়োজন হলে অনুরোধ জমা দিন।",
+    "submitFirst": "প্রথম অনুরোধ জমা দিন",
+    "requestReliefNow": "এখনই ত্রাণের জন্য অনুরোধ করুন",
+    "resourceTypes": "খাদ্য · পানি · চিকিৎসা সামগ্রী",
+    "ngoResponse": "এনজিও কয়েক মিনিটের মধ্যে সাড়া দেয়",
+    "emergencyNote": "জরুরি অবস্থায় — আপনার প্রয়োজন জানান",
+    "stats": {
+      "total": "মোট",
+      "active": "সক্রিয়",
+      "delivered": "বিতরণ করা হয়েছে"
+    },
+    "verification": "যাচাইকরণ:",
+    "aadhaar": "আধার",
+    "aadhaarPending": "আধার (মুলতুবি)",
+    "pan": "প্যান",
+    "panPending": "প্যান (মুলতুবি)",
+    "handlingRequest": "আপনার অনুরোধ পরিচালনা করছে",
+    "delivered": "বিতরণ করা হয়েছে",
+    "unitsAway": "দূরে",
+    "units": "একক"
+  },
+  "ngoDashboard": {
+    "title": "এনজিও ড্যাশবোর্ড",
+    "subtitle": "অপারেশন সংক্ষিপ্ত বিবরণ",
+    "live": "লাইভ",
+    "stats": {
+      "nearbyOpen": "কাছের খোলা",
+      "active": "সক্রিয়",
+      "inventoryUnits": "ইনভেন্টরি"
+    },
+    "activeTasks": "সক্রিয় কাজ",
+    "moreTasks": "+{{count}} আরও সক্রিয় কাজ",
+    "locationUnknown": "অবস্থান অজানা",
+    "awayKm": "{{dist}} km দূরে",
+    "kmRadius": "{{radius}} km ব্যাসার্ধ",
+    "requests": "অনুরোধ",
+    "requestsDesc": "কাছের খোলা অনুরোধ দেখুন",
+    "open": "খোলা",
+    "inventory": "ইনভেন্টরি",
+    "inventoryDesc": "স্টক স্তর পরিচালনা করুন",
+    "stockOverview": "স্টক সংক্ষিপ্ত বিবরণ"
+  },
+  "resources": {
+    "food": "খাদ্য",
+    "foodDesc": "খাবার, রেশন, প্যাকেজড ফুড",
+    "water": "পানি",
+    "waterDesc": "পানীয় জল, বিশুদ্ধকরণ",
+    "medical": "চিকিৎসা সহায়তা",
+    "medicalDesc": "ওষুধ, প্রাথমিক চিকিৎসা",
+    "other": "অন্যান্য",
+    "otherDesc": "আশ্রয়, কাপড়, সরবরাহ"
+  },
+  "urgency": {
+    "high": "উচ্চ",
+    "highDesc": "জীবন-হুমকি, তাৎক্ষণিক পদক্ষেপ প্রয়োজন",
+    "medium": "মধ্যম",
+    "mediumDesc": "জরুরি, শীঘ্রই মনোযোগ দিন",
+    "low": "কম",
+    "lowDesc": "অ-জরুরি, অপেক্ষা করতে পারে"
+  },
+  "status": {
+    "open": "খোলা",
+    "openDesc": "এনজিওর প্রতিক্রিয়ার অপেক্ষায়",
+    "claimed": "দাবি করা হয়েছে",
+    "claimedDesc": "এনজিও প্রস্তুতি নিচ্ছে",
+    "inTransit": "পথে",
+    "inTransitDesc": "সম্পদ পথে আছে",
+    "delivered": "বিতরণ করা হয়েছে",
+    "deliveredDesc": "অনুরোধ পূরণ হয়েছে"
+  },
+  "shared": {
+    "locationPermission": {
+      "title": "অবস্থান সক্ষম করুন",
+      "desc": "নিকটতম ত্রাণ পয়েন্ট দেখাতে অবস্থান অনুমতি দিন।",
+      "allow": "অবস্থান অনুমতি দিন",
+      "dismiss": "বন্ধ করুন"
+    },
+    "emergency": {
+      "banner": "জরুরি অবস্থা? জাতীয় দুর্যোগ হেল্পলাইনে কল করুন:",
+      "hotline": "1800-180-1253"
+    },
+    "map": "মানচিত্র",
+    "kmAway": "{{km}} km দূরে",
+    "mAway": "{{m}} m দূরে",
+    "aadhaar": "আধার",
+    "pan": "প্যান",
+    "verified": "যাচাইকৃত",
+    "unverified": "মুলতুবি"
+  },
+  "language": { "select": "ভাষা", "current": "বর্তমান ভাষা" },
+  "ngoRequests": {
+    "title": "অনুরোধ",
+    "subtitle": "খোলা এবং সক্রিয় অনুরোধ পরিচালনা করুন",
+    "tabOpen": "খোলা",
+    "tabMine": "আমার সক্রিয়",
+    "tabAll": "সব",
+    "claim": "দাবি করুন",
+    "claiming": "দাবি হচ্ছে…",
+    "cancel": "বাতিল",
+    "updateStatus": "অবস্থা আপডেট করুন",
+    "markInTransit": "পথে চিহ্নিত করুন",
+    "markDelivered": "বিতরণ চিহ্নিত করুন",
+    "noOpen": "কাছে কোনো খোলা অনুরোধ নেই",
+    "noOpenSubtitle": "নতুন অনুরোধ এখানে স্বয়ংক্রিয়ভাবে দেখাবে",
+    "noMine": "কোনো সক্রিয় অনুরোধ নেই",
+    "noMineSubtitle": "শুরু করতে কাছের অনুরোধ দাবি করুন",
+    "kmAway": "{{km}} km দূরে",
+    "timeJustNow": "এইমাত্র",
+    "timeMinAgo": "{{n}} মিনিট আগে",
+    "timeHourAgo": "{{n}} ঘন্টা আগে",
+    "timeDayAgo": "{{n}} দিন আগে",
+    "claimDesc": "আপনি {{resourceType}} সহায়তা (পরিমাণ: {{qty}}) নাগরিকের কাছে পৌঁছে দেওয়ার দায়িত্ব নিচ্ছেন।",
+    "deliverDesc": "নিশ্চিত করুন যে আপনি {{resourceType}} সহায়তা সফলভাবে নাগরিকের কাছে পৌঁছে দিয়েছেন।",
+    "updateQuantity": "পূর্ণ পরিমাণ আপডেট করুন",
+    "quantityLabel": "বিতরণ করা পরিমাণ",
+    "saveUpdate": "আপডেট সংরক্ষণ",
+    "saving": "সংরক্ষণ হচ্ছে…",
+    "claimSuccess": "অনুরোধ দাবি করা হয়েছে!",
+    "updateSuccess": "অবস্থা আপডেট হয়েছে!",
+    "errorClaim": "অনুরোধ দাবি করতে ব্যর্থ।",
+    "errorUpdate": "অবস্থা আপডেট করতে ব্যর্থ।"
+  }
+}

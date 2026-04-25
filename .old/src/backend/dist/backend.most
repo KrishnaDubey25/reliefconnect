@@ -1,0 +1,139 @@
+// Version: 1.0.0
+type AdminId__216880048 = AdminId__40348142;
+type AdminId__40348142 = Nat;
+type AdminProfile__521840011 =
+  {
+    id : AdminId__216880048;
+    principal : Principal;
+    registeredAt : Timestamp__512971193;
+    secretKeyVerified : Bool
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type InventoryHistoryId__56855261 = Nat;
+type InventoryHistoryId__961766545 = InventoryHistoryId__56855261;
+type InventoryHistory__646486742 =
+  {
+    delta : Int;
+    id : InventoryHistoryId__961766545;
+    ngoId : NGOId__263472433;
+    reason : Text;
+    resourceType : ResourceType__328789324;
+    timestamp : Timestamp__288252184
+  };
+type Inventory__478461447 =
+  {
+    lastUpdated : Timestamp__288252184;
+    ngoId : NGOId__263472433;
+    quantity : Nat;
+    resourceType : ResourceType__328789324
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Location__1062579662 = Location__847735819;
+type Location__114393163 = Location__847735819;
+type Location__167199634 = Location__847735819;
+type Location__847735819 = {lat : Float; lng : Float};
+type NGOId__263472433 = NGOId__596339573;
+type NGOId__596339573 = Nat;
+type NGOId__597273714 = NGOId__596339573;
+type NGOId__825934498 = NGOId__596339573;
+type NGOProfile__351219610 =
+  {
+    contactPhone : Text;
+    id : NGOId__825934498;
+    location : Location__1062579662;
+    orgName : Text;
+    principal : Principal;
+    registeredAt : Timestamp__607219121;
+    serviceRadius : Float
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ReliefRequest__682502772 =
+  {
+    claimedAt : ?Timestamp__83872209;
+    claimedBy : ?NGOId__597273714;
+    createdAt : Timestamp__83872209;
+    deliveredAt : ?Timestamp__83872209;
+    description : ?Text;
+    id : RequestId__846054344;
+    quantity : Nat;
+    resourceType : ResourceType__640675692;
+    status : RequestStatus__751452236;
+    urgency : UrgencyLevel__384746113;
+    userId : UserId__157076157;
+    userLocation : Location__114393163
+  };
+type RequestId__173743850 = Nat;
+type RequestId__846054344 = RequestId__173743850;
+type RequestStatus__751452236 = {#claimed; #delivered; #inTransit; #open};
+type ResourceType__328789324 = ResourceType__813426929;
+type ResourceType__640675692 = ResourceType__813426929;
+type ResourceType__813426929 = {#food; #medical; #other; #water};
+type Timestamp__288252184 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__512971193 = Timestamp__301639476;
+type Timestamp__607219121 = Timestamp__301639476;
+type Timestamp__778030842 = Timestamp__301639476;
+type Timestamp__83872209 = Timestamp__301639476;
+type UrgencyLevel__384746113 = {#high; #low; #medium};
+type UserId__1043627770 = UserId__158757552;
+type UserId__157076157 = UserId__158757552;
+type UserId__158757552 = Nat;
+type UserProfile__277265826 =
+  {
+    aadhaarDeclared : Bool;
+    id : UserId__1043627770;
+    location : Location__167199634;
+    name : Text;
+    panDeclared : Bool;
+    phone : Text;
+    principal : Principal;
+    registeredAt : Timestamp__778030842
+  };
+actor {
+  stable admins :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AdminProfile__521840011]];
+      var elementIndex : Nat__490723111
+    };
+  stable var heartbeatCount : Nat;
+  stable heartbeatIntervalNs : Int;
+  stable inventoryHistory :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?InventoryHistory__646486742]];
+      var elementIndex : Nat__490723111
+    };
+  stable inventoryMap :
+    {
+      var root : Node__46230540<Text, Inventory__478461447>;
+      var size : Nat__490723111
+    };
+  stable var lastHeartbeat : Int;
+  stable ngos :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NGOProfile__351219610]];
+      var elementIndex : Nat__490723111
+    };
+  stable otpStore :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable requests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ReliefRequest__682502772]];
+      var elementIndex : Nat__490723111
+    };
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?UserProfile__277265826]];
+      var elementIndex : Nat__490723111
+    }
+};

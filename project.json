@@ -1,0 +1,26 @@
+{
+  "overview": "ReliefConnect is a multi-role emergency relief coordination platform connecting Citizens, NGOs, and Admins to streamline distribution of essential resources during emergencies. Features real-time tracking, interactive maps, multi-language support for all 20+ Indian languages, and now an AI assistant to help users navigate the app.",
+  "features": [
+    "Multi-role system (Citizen, NGO, Admin)",
+    "4-step relief request submission for citizens",
+    "NGO request claiming and fulfillment tracking",
+    "Admin analytics dashboard and verification",
+    "Real-time interactive map with geolocation",
+    "Support for all 20+ official Indian languages",
+    "AI assistant panel for user guidance and queries",
+    "Proximity-based request sorting",
+    "Full request lifecycle tracking (Open → Claimed → In Transit → Delivered)"
+  ],
+  "category": "productivity",
+  "tags": [
+    "emergency",
+    "relief",
+    "coordination",
+    "ngo",
+    "multi-language",
+    "ai-assistant",
+    "india",
+    "crisis-management"
+  ],
+  "last_updated": "2026-04-25T12:28:40.750Z"
+}

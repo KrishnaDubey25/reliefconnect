@@ -1,0 +1,347 @@
+{
+  "app": {
+    "name": "रिलीफकनेक्ट",
+    "tagline": "राहत संसाधन प्रबंधन प्लेटफॉर्म",
+    "loading": "लोड हो रहा है…",
+    "connecting": "सर्वर से जुड़ रहा है…",
+    "retry": "पुनः प्रयास करें",
+    "refreshPage": "पृष्ठ ताज़ा करें",
+    "connectionNotReady": "कनेक्शन तैयार नहीं",
+    "connectionError": "सर्वर तक पहुँचने में असमर्थ। कृपया पृष्ठ ताज़ा करें और पुनः प्रयास करें।",
+    "locationDetected": "स्थान का पता चला",
+    "detectingLocation": "स्थान का पता लगाया जा रहा है…"
+  },
+  "nav": {
+    "signOut": "साइन आउट",
+    "backButton": "पीछे जाएं",
+    "forwardButton": "आगे जाएं",
+    "menuOpen": "मेनू",
+    "menuClose": "बंद करें",
+    "citizen": {
+      "dashboard": "मेरी रिपोर्ट",
+      "newRequest": "नई अनुरोध",
+      "map": "मानचित्र"
+    },
+    "ngo": {
+      "dashboard": "डैशबोर्ड",
+      "requests": "खुले अनुरोध",
+      "inventory": "इन्वेंटरी",
+      "map": "मानचित्र"
+    },
+    "admin": {
+      "dashboard": "अवलोकन",
+      "users": "उपयोगकर्ता",
+      "ngos": "एनजीओ",
+      "requests": "सभी अनुरोध",
+      "analytics": "विश्लेषण",
+      "map": "मानचित्र"
+    },
+    "roles": {
+      "citizen": "नागरिक",
+      "ngo": "एनजीओ",
+      "admin": "व्यवस्थापक"
+    },
+    "account": "खाता"
+  },
+  "login": {
+    "title": "रिलीफकनेक्ट",
+    "subtitle": "राहत संसाधन प्रबंधन प्लेटफॉर्म",
+    "selectRole": "साइन इन करने के लिए अपनी भूमिका चुनें",
+    "newUser": "{{appName}} पर नए हैं?",
+    "createAccount": "खाता बनाएं",
+    "backToRole": "भूमिका चयन पर वापस जाएं",
+    "alreadyRegistered": "पहले से पंजीकृत हैं?",
+    "signIn": "साइन इन करें",
+    "citizen": {
+      "label": "नागरिक",
+      "desc": "ज़रूरतें रिपोर्ट करें और राहत ट्रैक करें",
+      "features": {
+        "0": "अनुरोध सबमिट करें",
+        "1": "लाइव मानचित्र",
+        "2": "स्थिति अपडेट"
+      },
+      "signIn": "साइन इन",
+      "title": "नागरिक साइन इन",
+      "subtitle": "अपना पंजीकृत फोन नंबर दर्ज करें",
+      "phoneLabel": "फोन नंबर",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "नागरिक के रूप में साइन इन करें",
+      "signingIn": "साइन इन हो रहा है…",
+      "noAccount": "खाता नहीं है?",
+      "registerHere": "यहाँ पंजीकरण करें",
+      "errorNotFound": "इस फोन नंबर से कोई खाता नहीं मिला। कृपया पहले पंजीकरण करें।",
+      "errorGeneral": "लॉगिन विफल। कृपया अपना कनेक्शन जांचें।",
+      "errorConnectionNotReady": "कनेक्शन तैयार नहीं। कृपया पृष्ठ ताज़ा करें।",
+      "phoneRequired": "फोन नंबर आवश्यक है"
+    },
+    "ngo": {
+      "label": "एनजीओ",
+      "desc": "सहायता समन्वय और वितरण करें",
+      "features": {
+        "0": "अनुरोध क्लेम करें",
+        "1": "इन्वेंटरी प्रबंधित करें",
+        "2": "स्थिति अपडेट करें"
+      },
+      "signIn": "साइन इन",
+      "title": "एनजीओ साइन इन",
+      "subtitle": "अपने संगठन की जानकारी दर्ज करें",
+      "orgNameLabel": "संगठन का नाम",
+      "orgNamePlaceholder": "रेड क्रॉस — मुंबई",
+      "phoneLabel": "संपर्क फोन",
+      "phonePlaceholder": "+91 98765 43210",
+      "submitButton": "एनजीओ के रूप में साइन इन करें",
+      "signingIn": "साइन इन हो रहा है…",
+      "noAccount": "खाता नहीं है?",
+      "registerLink": "एनजीओ पंजीकृत करें",
+      "errorNotFound": "कोई एनजीओ खाता नहीं मिला। अपना विवरण जांचें।",
+      "errorGeneral": "लॉगिन विफल। कृपया पुनः प्रयास करें।",
+      "errorConnectionNotReady": "कनेक्शन तैयार नहीं।",
+      "fieldsRequired": "सभी फ़ील्ड आवश्यक हैं"
+    },
+    "admin": {
+      "label": "व्यवस्थापक",
+      "desc": "संचालन की निगरानी करें",
+      "features": {
+        "0": "एनजीओ सत्यापित करें",
+        "1": "विश्लेषण",
+        "2": "पूर्ण निगरानी"
+      },
+      "signIn": "साइन इन",
+      "title": "व्यवस्थापक साइन इन",
+      "subtitle": "अपनी गुप्त कुंजी दर्ज करें",
+      "restricted": "केवल अधिकृत प्लेटफॉर्म प्रशासकों के लिए।",
+      "secretKeyLabel": "गुप्त कुंजी",
+      "secretKeyPlaceholder": "अपनी गुप्त कुंजी दर्ज करें",
+      "submitButton": "व्यवस्थापक डैशबोर्ड खोलें",
+      "verifying": "सत्यापन हो रहा है…",
+      "errorConnectionNotReady": "कनेक्शन तैयार नहीं।",
+      "errorGeneral": "लॉगिन विफल। पुनः प्रयास करें।",
+      "secretKeyRequired": "गुप्त कुंजी आवश्यक है"
+    }
+  },
+  "register": {
+    "title": "{{appName}} से जुड़ें",
+    "subtitle": "आरंभ करने के लिए अपनी भूमिका चुनें।",
+    "backToLogin": "लॉगिन पर वापस",
+    "alreadyRegistered": "पहले से पंजीकृत हैं?",
+    "signIn": "साइन इन करें",
+    "citizen": {
+      "title": "नागरिक",
+      "badge": "व्यक्तियों के लिए",
+      "desc": "राहत की जरूरतें रिपोर्ट करें।",
+      "features": {
+        "0": "खाद्य, पानी और चिकित्सा अनुरोध",
+        "1": "GPS स्थान साझा करें",
+        "2": "स्थिति ट्रैक करें",
+        "3": "आधार/पैन घोषणा"
+      },
+      "registerButton": "नागरिक के रूप में पंजीकरण"
+    },
+    "ngo": {
+      "title": "एनजीओ / संगठन",
+      "badge": "राहत टीमों के लिए",
+      "desc": "नजदीकी अनुरोधों का जवाब दें।",
+      "features": {
+        "0": "मानचित्र पर अनुरोध देखें",
+        "1": "संसाधन भेजें",
+        "2": "इन्वेंटरी प्रबंधित करें",
+        "3": "सेवा क्षेत्र सेट करें"
+      },
+      "registerButton": "एनजीओ के रूप में पंजीकरण"
+    },
+    "admin": {
+      "title": "व्यवस्थापक",
+      "badge": "ओटीपी सत्यापित",
+      "desc": "पूर्ण प्लेटफॉर्म निगरानी।",
+      "features": {
+        "0": "उपयोगकर्ता और एनजीओ प्रबंधन",
+        "1": "लाइव ट्रैकिंग",
+        "2": "विश्लेषण",
+        "3": "सुरक्षित पहुँच"
+      },
+      "registerButton": "व्यवस्थापक के रूप में पंजीकरण"
+    }
+  },
+  "registerUser": {
+    "title": "नागरिक पंजीकरण",
+    "subtitle": "जरूरतें रिपोर्ट करें और राहत ट्रैक करें",
+    "chooseRole": "अलग भूमिका चुनें",
+    "nameLabel": "पूरा नाम",
+    "namePlaceholder": "प्रिया शर्मा",
+    "phoneLabel": "फोन नंबर",
+    "phonePlaceholder": "+91 98765 43210",
+    "locationLabel": "आपका स्थान",
+    "locationDetected": "स्थान का पता चला",
+    "locationPending": "स्थान ढूंढा जा रहा है…",
+    "identityTitle": "पहचान स्व-घोषणा",
+    "identityOptional": "(वैकल्पिक)",
+    "identityDesc": "पहचान घोषित करने से विश्वास बढ़ता है।",
+    "aadhaarLabel": "मेरे पास वैध आधार कार्ड है",
+    "panLabel": "मेरे पास वैध पैन कार्ड है",
+    "submitButton": "नागरिक खाता बनाएं",
+    "registering": "पंजीकरण हो रहा है…",
+    "successMessage": "पंजीकरण सफल! रिलीफकनेक्ट में आपका स्वागत है।",
+    "errorNameMin": "नाम कम से कम 2 अक्षरों का होना चाहिए",
+    "errorPhone": "वैध फोन नंबर दर्ज करें",
+    "errorConnectionNotReady": "कनेक्शन तैयार नहीं।",
+    "errorNetwork": "नेटवर्क त्रुटि।",
+    "errorGeneral": "पंजीकरण विफल।"
+  },
+  "registerNGO": {
+    "title": "एनजीओ पंजीकरण",
+    "subtitle": "राहत अनुरोधों का जवाब देने के लिए पंजीकरण करें",
+    "chooseRole": "अलग भूमिका चुनें",
+    "orgNameLabel": "संगठन का नाम",
+    "orgNamePlaceholder": "रेड क्रॉस — मुंबई",
+    "phoneLabel": "संपर्क फोन",
+    "phonePlaceholder": "+91 98765 43210",
+    "serviceRadiusLabel": "सेवा क्षेत्र (km)",
+    "locationLabel": "आपका स्थान",
+    "locationDetected": "स्थान का पता चला",
+    "locationPending": "स्थान ढूंढा जा रहा है…",
+    "submitButton": "एनजीओ पंजीकृत करें",
+    "registering": "पंजीकरण हो रहा है…",
+    "successMessage": "एनजीओ पंजीकरण सफल!",
+    "errorConnectionNotReady": "कनेक्शन तैयार नहीं।",
+    "errorNetwork": "नेटवर्क त्रुटि।",
+    "errorGeneral": "पंजीकरण विफल।"
+  },
+  "registerAdmin": {
+    "title": "व्यवस्थापक पंजीकरण",
+    "subtitle": "प्लेटफॉर्म व्यवस्थापक के रूप में पंजीकरण करें",
+    "chooseRole": "अलग भूमिका चुनें",
+    "secretKeyLabel": "व्यवस्थापक गुप्त कुंजी",
+    "secretKeyPlaceholder": "गुप्त कुंजी दर्ज करें",
+    "submitButton": "व्यवस्थापक के रूप में पंजीकरण",
+    "registering": "पंजीकरण हो रहा है…",
+    "successMessage": "व्यवस्थापक पंजीकरण सफल!",
+    "errorConnectionNotReady": "कनेक्शन तैयार नहीं।",
+    "errorGeneral": "पंजीकरण विफल।"
+  },
+  "userDashboard": {
+    "title": "मेरा डैशबोर्ड",
+    "subtitle": "राहत अनुरोध ट्रैकर",
+    "newRequest": "नई अनुरोध",
+    "allRequests": "सभी अनुरोध",
+    "nearestFirst": "नजदीकी पहले",
+    "total": "कुल",
+    "noRequests": "अभी कोई अनुरोध नहीं",
+    "noRequestsDesc": "जब आपको भोजन, पानी या चिकित्सा सहायता चाहिए तो अनुरोध सबमिट करें।",
+    "submitFirst": "पहला अनुरोध सबमिट करें",
+    "requestReliefNow": "अभी राहत के लिए अनुरोध करें",
+    "resourceTypes": "भोजन · पानी · चिकित्सा सामग्री",
+    "ngoResponse": "एनजीओ कुछ मिनटों में जवाब देते हैं",
+    "emergencyNote": "आपातकाल के लिए — अपनी जरूरत बताएं, मदद पाएं",
+    "stats": { "total": "कुल", "active": "सक्रिय", "delivered": "वितरित" },
+    "verification": "सत्यापन:",
+    "aadhaar": "आधार",
+    "aadhaarPending": "आधार (लंबित)",
+    "pan": "पैन",
+    "panPending": "पैन (लंबित)",
+    "handlingRequest": "आपके अनुरोध को संभाल रहा है",
+    "delivered": "वितरित",
+    "unitsAway": "दूर",
+    "units": "इकाइयाँ"
+  },
+  "ngoDashboard": {
+    "title": "एनजीओ डैशबोर्ड",
+    "subtitle": "संचालन अवलोकन",
+    "live": "लाइव",
+    "stats": {
+      "nearbyOpen": "नजदीकी खुले",
+      "active": "सक्रिय",
+      "inventoryUnits": "इन्वेंटरी"
+    },
+    "activeTasks": "सक्रिय कार्य",
+    "moreTasks": "+{{count}} और सक्रिय कार्य",
+    "locationUnknown": "स्थान अज्ञात",
+    "awayKm": "{{dist}} km दूर",
+    "kmRadius": "{{radius}} km क्षेत्र",
+    "requests": "अनुरोध",
+    "requestsDesc": "नजदीकी खुले अनुरोध देखें",
+    "open": "खुले",
+    "inventory": "इन्वेंटरी",
+    "inventoryDesc": "सभी संसाधन श्रेणियों में स्टॉक प्रबंधित करें",
+    "stockOverview": "स्टॉक अवलोकन"
+  },
+  "ngoRequests": {
+    "title": "अनुरोध",
+    "subtitle": "खुले और सक्रिय अनुरोध प्रबंधित करें",
+    "tabOpen": "खुले",
+    "tabMine": "मेरे सक्रिय",
+    "tabAll": "सभी",
+    "claim": "क्लेम करें",
+    "claiming": "क्लेम हो रहा है…",
+    "cancel": "रद्द करें",
+    "updateStatus": "स्थिति अपडेट करें",
+    "markInTransit": "मार्ग में चिह्नित करें",
+    "markDelivered": "वितरित चिह्नित करें",
+    "noOpen": "नजदीक कोई खुले अनुरोध नहीं",
+    "noOpenSubtitle": "नए अनुरोध यहाँ स्वतः दिखेंगे",
+    "noMine": "कोई सक्रिय अनुरोध नहीं",
+    "noMineSubtitle": "शुरू करने के लिए नजदीकी अनुरोध क्लेम करें",
+    "kmAway": "{{km}} km दूर",
+    "timeJustNow": "अभी",
+    "timeMinAgo": "{{n}} मिनट पहले",
+    "timeHourAgo": "{{n}} घंटे पहले",
+    "timeDayAgo": "{{n}} दिन पहले",
+    "claimDesc": "आप {{resourceType}} सहायता (मात्रा: {{qty}}) नागरिक को पहुँचाने की जिम्मेदारी ले रहे हैं।",
+    "deliverDesc": "पुष्टि करें कि आपने {{resourceType}} सहायता नागरिक को सफलतापूर्वक पहुँचाई है।",
+    "updateQuantity": "पूर्ण मात्रा अपडेट करें",
+    "quantityLabel": "वितरित मात्रा",
+    "saveUpdate": "अपडेट सहेजें",
+    "saving": "सहेज रहा है…",
+    "claimSuccess": "अनुरोध क्लेम किया!",
+    "updateSuccess": "स्थिति अपडेट हुई!",
+    "errorClaim": "अनुरोध क्लेम करने में विफल।",
+    "errorUpdate": "स्थिति अपडेट करने में विफल।"
+  },
+  "resources": {
+    "food": "भोजन",
+    "foodDesc": "खाना, राशन, पैकेज्ड फूड",
+    "water": "पानी",
+    "waterDesc": "पीने का पानी, शुद्धिकरण",
+    "medical": "चिकित्सा सहायता",
+    "medicalDesc": "दवाई, प्राथमिक उपचार",
+    "other": "अन्य",
+    "otherDesc": "आश्रय, कपड़े, आपूर्ति"
+  },
+  "urgency": {
+    "high": "उच्च",
+    "highDesc": "जीवन-खतरा, तत्काल कार्रवाई आवश्यक",
+    "medium": "मध्यम",
+    "mediumDesc": "जरूरी, जल्द ध्यान दें",
+    "low": "कम",
+    "lowDesc": "गैर-जरूरी, प्रतीक्षा कर सकता है"
+  },
+  "status": {
+    "open": "खुला",
+    "openDesc": "एनजीओ की प्रतिक्रिया का इंतजार",
+    "claimed": "दावा किया",
+    "claimedDesc": "एनजीओ तैयारी कर रहा है",
+    "inTransit": "मार्ग में",
+    "inTransitDesc": "संसाधन रास्ते में हैं",
+    "delivered": "वितरित",
+    "deliveredDesc": "अनुरोध पूरा हुआ"
+  },
+  "shared": {
+    "locationPermission": {
+      "title": "स्थान सक्षम करें",
+      "desc": "नजदीकी राहत स्थान दिखाने के लिए स्थान अनुमति दें।",
+      "allow": "स्थान की अनुमति दें",
+      "dismiss": "बंद करें"
+    },
+    "emergency": {
+      "banner": "आपातकाल? राष्ट्रीय आपदा हेल्पलाइन पर कॉल करें:",
+      "hotline": "1800-180-1253"
+    },
+    "map": "मानचित्र",
+    "kmAway": "{{km}} km दूर",
+    "mAway": "{{m}} m दूर",
+    "aadhaar": "आधार",
+    "pan": "पैन",
+    "verified": "सत्यापित",
+    "unverified": "लंबित"
+  },
+  "language": { "select": "भाषा", "current": "वर्तमान भाषा" }
+}

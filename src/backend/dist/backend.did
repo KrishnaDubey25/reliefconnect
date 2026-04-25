@@ -1,0 +1,191 @@
+type VerificationCounts = 
+ record {
+   aadhaarDeclared: nat;
+   bothDeclared: nat;
+   panDeclared: nat;
+   totalUsers: nat;
+ };
+type UserProfile = 
+ record {
+   aadhaarDeclared: bool;
+   id: UserId;
+   location: Location;
+   name: text;
+   panDeclared: bool;
+   phone: text;
+   "principal": principal;
+   registeredAt: Timestamp;
+ };
+type UserId = nat;
+type UrgencyLevel = 
+ variant {
+   high;
+   low;
+   medium;
+ };
+type UpdateRequestStatusArgs = 
+ record {
+   requestId: RequestId;
+   status: RequestStatus;
+ };
+type UpdateInventoryArgs = 
+ record {
+   delta: int;
+   reason: text;
+   resourceType: ResourceType;
+ };
+type Timestamp = int;
+type ResourceType = 
+ variant {
+   food;
+   medical;
+   other;
+   water;
+ };
+type RequestStatus = 
+ variant {
+   claimed;
+   delivered;
+   inTransit;
+   open;
+ };
+type RequestId = nat;
+type ReliefRequest = 
+ record {
+   claimedAt: opt Timestamp;
+   claimedBy: opt NGOId;
+   createdAt: Timestamp;
+   deliveredAt: opt Timestamp;
+   description: opt text;
+   id: RequestId;
+   quantity: nat;
+   resourceType: ResourceType;
+   status: RequestStatus;
+   urgency: UrgencyLevel;
+   userId: UserId;
+   userLocation: Location;
+ };
+type RegisterUserArgs = 
+ record {
+   aadhaarDeclared: bool;
+   location: Location;
+   name: text;
+   panDeclared: bool;
+   phone: text;
+ };
+type RegisterNGOArgs = 
+ record {
+   contactPhone: text;
+   location: Location;
+   orgName: text;
+   serviceRadius: float64;
+ };
+type RegisterAdminArgs = record {secretKey: text;};
+type NGOProfile = 
+ record {
+   contactPhone: text;
+   id: NGOId;
+   location: Location;
+   orgName: text;
+   "principal": principal;
+   registeredAt: Timestamp;
+   serviceRadius: float64;
+ };
+type NGOId = nat;
+type Location = 
+ record {
+   lat: float64;
+   lng: float64;
+ };
+type Inventory = 
+ record {
+   lastUpdated: Timestamp;
+   ngoId: NGOId;
+   quantity: nat;
+   resourceType: ResourceType;
+ };
+type CreateRequestArgs = 
+ record {
+   description: opt text;
+   quantity: nat;
+   resourceType: ResourceType;
+   urgency: UrgencyLevel;
+   userLocation: Location;
+ };
+type AnalyticsSummary = 
+ record {
+   claimedRequests: nat;
+   deliveredRequests: nat;
+   inTransitRequests: nat;
+   openRequests: nat;
+   totalNGOs: nat;
+   totalRequests: nat;
+   totalUsers: nat;
+ };
+type AdminProfile = 
+ record {
+   id: AdminId;
+   "principal": principal;
+   registeredAt: Timestamp;
+   secretKeyVerified: bool;
+ };
+type AdminId = nat;
+service : {
+  askAI: (userMessage: text) -> (text);
+  claimRequest: (requestId: RequestId) -> (bool);
+  createRequest: (args: CreateRequestArgs) -> (ReliefRequest);
+  generateOTP: (_email: text) -> (text);
+  getAllNGOs: () -> (vec NGOProfile) query;
+  getAllRequestsForAdmin: () -> (vec ReliefRequest) query;
+  getAllUsers: () -> (vec UserProfile) query;
+  getAnalyticsSummary: () -> (AnalyticsSummary) query;
+  getMyAdminProfile: () -> (opt AdminProfile) query;
+  getMyNGOProfile: () -> (opt NGOProfile) query;
+  getMyUserProfile: () -> (opt UserProfile) query;
+  getNGOInventory: (ngoId: NGOId) -> (vec Inventory) query;
+  getNGOProfile: (id: NGOId) -> (opt NGOProfile) query;
+  getNearbyNGOs: (location: Location, radiusKm: float64) ->
+   (vec NGOProfile) query;
+  getOpenRequests: () -> (vec ReliefRequest) query;
+  getRequestsByNGO: (ngoId: NGOId) -> (vec ReliefRequest) query;
+  getRequestsByUser: (userId: UserId) -> (vec ReliefRequest) query;
+  getStatus: () -> (record {
+                      alive: bool;
+                      timestamp: int;
+                      version: text;
+                    }) query;
+  getUserProfile: (id: UserId) -> (opt UserProfile) query;
+  getVerificationCounts: () -> (VerificationCounts) query;
+  loginAdmin: (secretKey: text) ->
+   (variant {
+      err: text;
+      ok: AdminProfile;
+    }) query;
+  loginNGO: (orgName: text, contactPhone: text) ->
+   (variant {
+      err: text;
+      ok: NGOProfile;
+    }) query;
+  loginUser: (phone: text) -> (variant {
+                                 err: text;
+                                 ok: UserProfile;
+                               }) query;
+  registerAdmin: (args: RegisterAdminArgs) ->
+   (variant {
+      err: text;
+      ok: AdminProfile;
+    });
+  registerNGO: (args: RegisterNGOArgs) ->
+   (variant {
+      err: text;
+      ok: NGOProfile;
+    });
+  registerUser: (args: RegisterUserArgs) ->
+   (variant {
+      err: text;
+      ok: UserProfile;
+    });
+  updateInventory: (args: UpdateInventoryArgs) -> (Inventory);
+  updateRequestStatus: (args: UpdateRequestStatusArgs) -> (bool);
+  verifyOTP: (otp: text) -> (bool);
+}

@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans", ui-sans-serif, system-ui, -apple-system,
+      sans-serif;
+    --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, "SF Mono", Consolas, monospace;
+    --radius: 0.5rem;
+
+    --background: 0.98 0 0;
+    --foreground: 0.18 0 0;
+    --card: 1.0 0 0;
+    --card-foreground: 0.18 0 0;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.18 0 0;
+
+    --primary: 0.55 0.22 25;
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.58 0.17 145;
+    --secondary-foreground: 0.99 0 0;
+    --muted: 0.92 0.01 0;
+    --muted-foreground: 0.42 0 0;
+
+    --accent: 0.6 0.2 35;
+    --accent-foreground: 0.99 0 0;
+
+    --destructive: 0.52 0.24 20;
+    --destructive-foreground: 0.99 0 0;
+
+    --border: 0.88 0.01 0;
+    --input: 0.94 0.01 0;
+    --ring: 0.55 0.22 25;
+
+    --chart-1: 0.55 0.22 25;
+    --chart-2: 0.68 0.17 62;
+    --chart-3: 0.58 0.17 145;
+    --chart-4: 0.62 0.18 50;
+    --chart-5: 0.52 0.16 10;
+
+    --sidebar: 0.96 0 0;
+    --sidebar-foreground: 0.18 0 0;
+    --sidebar-primary: 0.55 0.22 25;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.6 0.2 35;
+    --sidebar-accent-foreground: 0.99 0 0;
+    --sidebar-border: 0.88 0.01 0;
+    --sidebar-ring: 0.55 0.22 25;
+  }
+
+  .dark {
+    --background: 0.15 0 0;
+    --foreground: 0.92 0 0;
+    --card: 0.2 0 0;
+    --card-foreground: 0.92 0 0;
+    --popover: 0.24 0 0;
+    --popover-foreground: 0.92 0 0;
+
+    --primary: 0.62 0.2 25;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.62 0.16 145;
+    --secondary-foreground: 0.12 0 0;
+    --muted: 0.28 0.01 0;
+    --muted-foreground: 0.58 0 0;
+
+    --accent: 0.65 0.2 40;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.58 0.24 15;
+    --destructive-foreground: 0.12 0 0;
+
+    --border: 0.32 0.01 0;
+    --input: 0.32 0.01 0;
+    --ring: 0.62 0.2 25;
+
+    --chart-1: 0.62 0.2 25;
+    --chart-2: 0.74 0.16 62;
+    --chart-3: 0.62 0.16 145;
+    --chart-4: 0.68 0.18 50;
+    --chart-5: 0.58 0.16 10;
+
+    --sidebar: 0.2 0 0;
+    --sidebar-foreground: 0.92 0 0;
+    --sidebar-primary: 0.62 0.2 25;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.65 0.2 40;
+    --sidebar-accent-foreground: 0.12 0 0;
+    --sidebar-border: 0.32 0.01 0;
+    --sidebar-ring: 0.62 0.2 25;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 100 900;
+  }
+
+  @font-face {
+    font-family: "DM Sans";
+    src: url("/assets/fonts/DMSans.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 100 900;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 100 900;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .status-open {
+    @apply bg-accent/10 text-accent border border-accent/20;
+  }
+
+  .status-claimed {
+    color: oklch(var(--chart-2));
+    background-color: oklch(var(--chart-2) / 0.1);
+    border: 1px solid oklch(var(--chart-2) / 0.2);
+  }
+
+  .status-in-transit {
+    color: oklch(var(--chart-4));
+    background-color: oklch(var(--chart-4) / 0.1);
+    border: 1px solid oklch(var(--chart-4) / 0.2);
+  }
+
+  .status-delivered {
+    @apply bg-secondary/10 text-secondary border border-secondary/20;
+  }
+
+  .relief-food {
+    color: oklch(var(--chart-4));
+  }
+
+  .relief-water {
+    @apply text-primary;
+  }
+
+  .relief-medical {
+    @apply text-accent;
+  }
+
+  .relief-other {
+    @apply text-muted-foreground;
+  }
+
+  .map-pin-open {
+    @apply bg-accent border-2 border-accent/80 text-accent-foreground;
+  }
+
+  .map-pin-claimed {
+    background-color: oklch(var(--chart-2));
+    border: 2px solid oklch(var(--chart-2) / 0.8);
+    color: white;
+  }
+
+  .map-pin-delivered {
+    @apply bg-secondary border-2 border-secondary/80 text-secondary-foreground;
+  }
+
+  .ngo-radius {
+    @apply border border-primary/30 rounded-full bg-primary/5;
+  }
+}
