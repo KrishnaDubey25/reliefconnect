@@ -53,7 +53,6 @@ export default function AdminMapPage() {
     refetchInterval: 60_000,
   });
 
-  // Derive map center: GPS → first NGO → first request → India default
   const mapCenter = useMemo(() => {
     if (!geo.loading && geo.lat !== null && geo.lng !== null) {
       return { lat: geo.lat, lng: geo.lng };
@@ -101,7 +100,6 @@ export default function AdminMapPage() {
       })
     : null;
 
-  // Analytics counts
   const counts = useMemo(() => {
     const all = requests ?? [];
     return {
@@ -114,7 +112,7 @@ export default function AdminMapPage() {
   }, [requests]);
 
   return (
-    <div className="space-y-5 max-w-3xl mx-auto" data-ocid="admin_map.page">
+    <div className="space-y-5" data-ocid="admin_map.page">
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
@@ -144,8 +142,8 @@ export default function AdminMapPage() {
         </div>
       </div>
 
-      {/* Stats overlay row */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+      {/* Stats overlay row — flex on lg for full-row display */}
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 lg:flex lg:flex-wrap lg:gap-3">
         {[
           {
             label: t("adminAnalytics.totalRequests"),
@@ -175,7 +173,7 @@ export default function AdminMapPage() {
         ].map((s) => (
           <div
             key={s.label}
-            className={`rounded-lg border border-border px-3 py-2 text-center ${s.color || "bg-card"}`}
+            className={`rounded-lg border border-border px-3 py-2 text-center lg:flex-1 lg:min-w-[8rem] ${s.color || "bg-card"}`}
           >
             <p className="text-xs text-muted-foreground">{s.label}</p>
             <p className="text-xl font-bold font-display">{s.value}</p>
@@ -238,7 +236,7 @@ export default function AdminMapPage() {
         </Badge>
       </div>
 
-      {/* Map */}
+      {/* Map — taller on desktop */}
       {loadingReq || loadingNGO ? (
         <Skeleton className="w-full rounded-xl" style={{ height: 460 }} />
       ) : (
@@ -253,8 +251,8 @@ export default function AdminMapPage() {
         />
       )}
 
-      {/* Two-column list: requests + NGOs */}
-      <div className="grid md:grid-cols-2 gap-4">
+      {/* Two-column list: requests + NGOs — lg:gap-8 */}
+      <div className="grid md:grid-cols-2 gap-4 lg:gap-8">
         {/* Requests list */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -274,7 +272,7 @@ export default function AdminMapPage() {
               ))}
             </div>
           ) : filteredRequests.length > 0 ? (
-            <div className="space-y-1.5 max-h-64 overflow-y-auto pr-1">
+            <div className="space-y-1.5 max-h-72 lg:max-h-96 overflow-y-auto pr-1">
               {filteredRequests.map((req, i) => (
                 <div
                   key={req.id.toString()}
@@ -328,7 +326,7 @@ export default function AdminMapPage() {
               ))}
             </div>
           ) : ngos && ngos.length > 0 ? (
-            <div className="space-y-1.5 max-h-64 overflow-y-auto pr-1">
+            <div className="space-y-1.5 max-h-72 lg:max-h-96 overflow-y-auto pr-1">
               {ngos.map((ngo, i) => (
                 <div
                   key={ngo.id.toString()}

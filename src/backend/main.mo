@@ -19,10 +19,10 @@ import AIChatApi "mixins/ai-chat-api";
 
 
 actor {
-  // --- State collections (mutable in-place via mo:core, no reassignment needed) ---
-  let users = List.empty<UserTypes.UserProfile>();
-  let ngos = List.empty<NGOTypes.NGOProfile>();
-  let admins = List.empty<AdminTypes.AdminProfile>();
+  // --- State collections (var so List.add() / List.mapInPlace() mutations are kept) ---
+  var users = List.empty<UserTypes.UserProfile>();
+  var ngos = List.empty<NGOTypes.NGOProfile>();
+  var admins = List.empty<AdminTypes.AdminProfile>();
   let requests = List.empty<RequestTypes.ReliefRequest>();
   let inventoryMap = Map.empty<Text, InventoryTypes.Inventory>();
   let inventoryHistory = List.empty<InventoryTypes.InventoryHistory>();

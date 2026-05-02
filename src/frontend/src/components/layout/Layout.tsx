@@ -30,7 +30,7 @@ export function Layout({ children, showNav = true }: LayoutProps) {
               data-ocid="layout.main"
             >
               {/* Mobile top bar is inside Navigation */}
-              <div className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 max-w-full">
+              <div className="flex-1 p-4 lg:p-8 xl:p-10 max-w-full">
                 {children}
               </div>
             </main>

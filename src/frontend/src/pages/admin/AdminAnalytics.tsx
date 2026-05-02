@@ -203,7 +203,7 @@ export default function AdminAnalytics() {
 
       {/* Top-line metrics */}
       <div
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6"
         data-ocid="admin_analytics.metrics.section"
       >
         {isLoading
@@ -241,7 +241,7 @@ export default function AdminAnalytics() {
                 className="border-border"
                 data-ocid={`admin_analytics.metrics.item.${i + 1}`}
               >
-                <CardContent className="p-4">
+                <CardContent className="p-4 lg:py-6">
                   <div
                     className="h-8 w-8 rounded-lg flex items-center justify-center mb-3"
                     style={{ background: colorStyle.replace(")", " / 0.12)") }}
@@ -255,7 +255,7 @@ export default function AdminAnalytics() {
             ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
         {/* Resource Distribution */}
         <Card
           className="border-border"
@@ -275,7 +275,7 @@ export default function AdminAnalytics() {
                 ))}
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-4 lg:min-h-48">
                 {RESOURCE_TYPES.map((rt, i) => (
                   <BarRow
                     key={rt.value}
@@ -317,7 +317,7 @@ export default function AdminAnalytics() {
                 ))}
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-4 lg:min-h-48">
                 {[
                   {
                     label: t("status.open"),
@@ -388,7 +388,7 @@ export default function AdminAnalytics() {
                 ))}
               </div>
             ) : (
-              <div className="max-w-lg">
+              <div className="lg:max-w-2xl">
                 <VerifBreakdown
                   both={bothDeclared}
                   aadhaarOnly={aadhaarOnly}

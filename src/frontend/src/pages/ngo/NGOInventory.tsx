@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -192,6 +192,13 @@ export default function NGOInventory() {
   const outOfStock = RESOURCE_TYPES.filter(
     (rt) => (inventoryMap.get(rt.value)?.quantity ?? 0n) === 0n,
   ).length;
+  const lowStock = RESOURCE_TYPES.filter((rt) => {
+    const qty = Number(inventoryMap.get(rt.value)?.quantity ?? 0n);
+    return qty > 0 && qty < 10;
+  }).length;
+  const wellStocked = RESOURCE_TYPES.filter(
+    (rt) => Number(inventoryMap.get(rt.value)?.quantity ?? 0n) >= 10,
+  ).length;
 
   function openEdit(resourceType: ResourceType) {
     setEditState({ resourceType, delta: 10, reason: "" });
@@ -204,7 +211,7 @@ export default function NGOInventory() {
 
   return (
     <div
-      className="space-y-6 max-w-2xl mx-auto pb-8"
+      className="space-y-6 max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto pb-8"
       data-ocid="ngo_inventory.page"
     >
       {/* Header */}
@@ -217,13 +224,11 @@ export default function NGOInventory() {
         </p>
       </div>
 
-      {/* Summary stats */}
-      <div className="grid grid-cols-2 gap-3">
+      {/* Summary stats — 2 cols on mobile, 4 on desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="bg-card border border-border rounded-xl p-3 text-center">
           <p className="text-2xl font-bold text-primary">{totalUnits}</p>
-          <p className="text-xs text-muted-foreground">
-            {t("ngoInventory.quantity")} Units
-          </p>
+          <p className="text-xs text-muted-foreground">Total Units</p>
         </div>
         <div className="bg-card border border-border rounded-xl p-3 text-center">
           <p
@@ -233,22 +238,34 @@ export default function NGOInventory() {
           </p>
           <p className="text-xs text-muted-foreground">Out of Stock</p>
         </div>
+        <div className="bg-card border border-border rounded-xl p-3 text-center hidden lg:block">
+          <p
+            className={`text-2xl font-bold ${lowStock > 0 ? "text-chart-2" : "text-secondary"}`}
+          >
+            {lowStock}
+          </p>
+          <p className="text-xs text-muted-foreground">Low Stock</p>
+        </div>
+        <div className="bg-card border border-border rounded-xl p-3 text-center hidden lg:block">
+          <p className="text-2xl font-bold text-secondary">{wellStocked}</p>
+          <p className="text-xs text-muted-foreground">Well Stocked</p>
+        </div>
       </div>
 
-      {/* Inventory Grid */}
+      {/* Inventory Grid — 2-col on desktop */}
       <div className="space-y-3">
         <h2 className="text-sm font-semibold flex items-center gap-2">
           <Package size={14} className="text-primary" />
           {t("ngoInventory.resource")} by Category
         </h2>
         {isLoading ? (
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[1, 2, 3, 4].map((i) => (
               <Skeleton key={i} className="h-28 w-full rounded-xl" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {RESOURCE_TYPES.map((rt, i) => {
               const inv = inventoryMap.get(rt.value);
               return (
@@ -343,7 +360,7 @@ export default function NGOInventory() {
         onOpenChange={(open) => !open && setEditState(null)}
       >
         <DialogContent
-          className="max-w-sm"
+          className="max-w-sm lg:max-w-lg"
           data-ocid="ngo_inventory.edit_dialog"
         >
           <DialogHeader>

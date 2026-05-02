@@ -96,7 +96,7 @@ type UserProfile__277265826 =
     registeredAt : Timestamp__778030842
   };
 actor {
-  stable admins :
+  stable var admins :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?AdminProfile__521840011]];
@@ -116,7 +116,7 @@ actor {
       var size : Nat__490723111
     };
   stable var lastHeartbeat : Int;
-  stable ngos :
+  stable var ngos :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?NGOProfile__351219610]];
@@ -130,7 +130,7 @@ actor {
       var blocks : [var [var ?ReliefRequest__682502772]];
       var elementIndex : Nat__490723111
     };
-  stable users :
+  stable var users :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?UserProfile__277265826]];

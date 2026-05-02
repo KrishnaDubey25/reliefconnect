@@ -68,7 +68,7 @@ export default function AdminUsers() {
 
       {/* Verification Summary */}
       <div
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6"
         data-ocid="admin_users.verification_summary.section"
       >
         {loadingVerification
@@ -126,7 +126,7 @@ export default function AdminUsers() {
             <CardTitle className="text-sm font-semibold">
               {t("adminUsers.title")}
             </CardTitle>
-            <div className="relative w-56">
+            <div className="relative w-56 lg:w-96">
               <Search
                 size={13}
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"

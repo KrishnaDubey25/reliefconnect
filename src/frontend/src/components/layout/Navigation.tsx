@@ -185,24 +185,28 @@ export function Navigation() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-56 min-h-screen bg-card border-r border-border shrink-0">
-        <div className="p-4 border-b border-border">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
-              <Shield size={14} className="text-primary-foreground" />
+      <aside className="hidden lg:flex flex-col lg:w-64 xl:w-72 min-h-screen bg-card border-r border-border shrink-0">
+        <div className="px-4 lg:px-5 py-5 lg:py-6 border-b border-border">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="h-8 w-8 lg:h-9 lg:w-9 rounded-lg bg-primary flex items-center justify-center shrink-0">
+              <Shield size={16} className="text-primary-foreground lg:hidden" />
+              <Shield
+                size={18}
+                className="text-primary-foreground hidden lg:block"
+              />
             </div>
-            <span className="font-display font-bold text-base text-foreground">
+            <span className="font-display font-bold text-lg lg:text-xl text-foreground leading-tight">
               {APP_NAME}
             </span>
           </div>
-          <div className="flex items-center justify-between mt-2">
-            <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-0.5 min-w-0">
               <span
-                className={`text-xs font-medium px-2 py-0.5 rounded-full border shrink-0 ${role ? ROLE_COLORS[role] : ""}`}
+                className={`text-xs lg:text-sm font-semibold px-2.5 py-1 rounded-full border self-start shrink-0 ${role ? ROLE_COLORS[role] : ""}`}
               >
                 {role ? t(ROLE_LABEL_KEYS[role]) : ""}
               </span>
-              <span className="text-xs text-muted-foreground truncate min-w-0">
+              <span className="text-xs lg:text-sm text-muted-foreground truncate min-w-0 px-0.5">
                 {displayName}
               </span>
             </div>
@@ -210,7 +214,7 @@ export function Navigation() {
           </div>
         </div>
 
-        <nav className="flex-1 p-3 space-y-0.5">
+        <nav className="flex-1 px-3 lg:px-4 py-4 space-y-0.5">
           {navItems.map((item) => {
             const active = location.pathname === item.href;
             const label = t(item.labelKey);
@@ -218,22 +222,22 @@ export function Navigation() {
               <Link
                 key={item.href}
                 to={item.href}
-                className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-smooth ${
+                className={`flex items-center gap-3 px-3 lg:px-4 py-2.5 rounded-lg text-sm lg:text-base transition-smooth ${
                   active
                     ? "bg-primary/10 text-primary font-medium"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
                 data-ocid={`nav.${item.ocidKey}`}
               >
-                <item.icon size={16} />
+                <item.icon className="h-4 w-4 lg:h-5 lg:w-5 shrink-0" />
                 {label}
               </Link>
             );
           })}
         </nav>
 
-        <div className="p-3 border-t border-border space-y-1">
-          <div className="flex items-center justify-between">
+        <div className="px-3 lg:px-4 py-4 border-t border-border space-y-2">
+          <div className="flex items-center justify-between px-1">
             <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
@@ -241,10 +245,10 @@ export function Navigation() {
             variant="ghost"
             size="sm"
             onClick={handleLogout}
-            className="w-full justify-start gap-2 text-muted-foreground hover:text-foreground"
+            className="w-full justify-start gap-2.5 text-muted-foreground hover:text-foreground lg:text-base lg:py-2.5 lg:h-auto"
             data-ocid="nav.logout_button"
           >
-            <LogOut size={15} />
+            <LogOut className="h-4 w-4 lg:h-5 lg:w-5 shrink-0" />
             {t("nav.signOut")}
           </Button>
         </div>

@@ -22,6 +22,7 @@ import {
   Phone,
   Radio,
   Truck,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -74,6 +75,8 @@ interface RequestCardProps {
   onUpdateStatus?: (req: ReliefRequest, next: RequestStatus) => void;
   isPendingClaim?: boolean;
   isPendingUpdate?: boolean;
+  isSelected?: boolean;
+  onSelect?: (req: ReliefRequest) => void;
 }
 
 function RequestCard({
@@ -86,6 +89,8 @@ function RequestCard({
   onUpdateStatus,
   isPendingClaim,
   isPendingUpdate,
+  isSelected,
+  onSelect,
 }: RequestCardProps) {
   const { t } = useTranslation();
   const dist = calcDistance(
@@ -98,8 +103,9 @@ function RequestCard({
 
   return (
     <Card
-      className="border-border bg-card"
+      className={`border-border bg-card cursor-pointer transition-smooth ${isSelected ? "ring-2 ring-primary" : "hover:bg-muted/20"}`}
       data-ocid={`ngo_requests.item.${index}`}
+      onClick={() => onSelect?.(req)}
     >
       <CardContent className="p-4 space-y-3">
         {/* Header row */}
@@ -144,16 +150,171 @@ function RequestCard({
           )}
         </div>
 
-        {/* Actions */}
+        {/* Actions — shown inline on mobile, hidden on desktop (sidebar handles it) */}
+        <div className="lg:hidden">
+          {mode === "open" && (
+            <Button
+              size="sm"
+              className="w-full gap-1.5 text-xs"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClaim?.(req);
+              }}
+              disabled={isPendingClaim}
+              data-ocid={`ngo_requests.claim_button.${index}`}
+            >
+              <ChevronRight size={14} />
+              {isPendingClaim
+                ? t("ngoRequests.claiming")
+                : t("ngoRequests.claim")}
+            </Button>
+          )}
+
+          {mode === "active" && req.status === RequestStatus.claimed && (
+            <Button
+              size="sm"
+              className="w-full gap-1.5 text-xs"
+              onClick={(e) => {
+                e.stopPropagation();
+                onUpdateStatus?.(req, RequestStatus.inTransit);
+              }}
+              disabled={isPendingUpdate}
+              data-ocid={`ngo_requests.transit_button.${index}`}
+            >
+              <Truck size={14} />
+              {isPendingUpdate
+                ? t("ngoRequests.saving")
+                : t("ngoRequests.markInTransit")}
+            </Button>
+          )}
+
+          {mode === "active" && req.status === RequestStatus.inTransit && (
+            <Button
+              size="sm"
+              className="w-full gap-1.5 text-xs bg-secondary text-secondary-foreground hover:bg-secondary/90"
+              onClick={(e) => {
+                e.stopPropagation();
+                onUpdateStatus?.(req, RequestStatus.delivered);
+              }}
+              disabled={isPendingUpdate}
+              data-ocid={`ngo_requests.deliver_button.${index}`}
+            >
+              <CheckCircle2 size={14} />
+              {isPendingUpdate
+                ? t("ngoRequests.saving")
+                : t("ngoRequests.markDelivered")}
+            </Button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface ActionSidebarProps {
+  req: ReliefRequest;
+  mode: "open" | "active";
+  ngoProfile: NGOProfile;
+  userProfiles: Map<string, UserProfile>;
+  onClose: () => void;
+  onClaim?: (req: ReliefRequest) => void;
+  onUpdateStatus?: (req: ReliefRequest, next: RequestStatus) => void;
+  isPendingClaim?: boolean;
+  isPendingUpdate?: boolean;
+}
+
+function ActionSidebar({
+  req,
+  mode,
+  ngoProfile,
+  userProfiles,
+  onClose,
+  onClaim,
+  onUpdateStatus,
+  isPendingClaim,
+  isPendingUpdate,
+}: ActionSidebarProps) {
+  const { t } = useTranslation();
+  const dist = calcDistance(
+    ngoProfile.location.lat,
+    ngoProfile.location.lng,
+    req.userLocation.lat,
+    req.userLocation.lng,
+  );
+  const user = userProfiles.get(req.userId.toString());
+
+  return (
+    <div
+      className="lg:w-80 shrink-0 bg-card border border-border rounded-xl p-5 space-y-4 self-start sticky top-4"
+      data-ocid="ngo_requests.action_sidebar"
+    >
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold text-sm">Request Details</h3>
+        <button
+          type="button"
+          onClick={onClose}
+          className="h-7 w-7 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+          data-ocid="ngo_requests.sidebar_close_button"
+        >
+          <X size={14} />
+        </button>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div className="h-12 w-12 rounded-xl bg-muted flex items-center justify-center shrink-0">
+          <ResourceIcon type={req.resourceType} size={22} />
+        </div>
+        <div className="min-w-0">
+          <p className="font-bold text-base capitalize">
+            {req.resourceType} Aid
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Qty: {req.quantity.toString()}
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Status</span>
+          <StatusBadge status={req.status} size="sm" />
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Urgency</span>
+          <UrgencyBadge urgency={req.urgency} size="sm" />
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Distance</span>
+          <span className="text-xs font-medium">{dist.toFixed(1)} km away</span>
+        </div>
+        {user && (
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Contact</span>
+            <span className="text-xs font-medium flex items-center gap-1">
+              <Phone size={10} />
+              {user.phone}
+            </span>
+          </div>
+        )}
+      </div>
+
+      {req.description && (
+        <div className="bg-muted/30 rounded-lg p-3">
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            {req.description}
+          </p>
+        </div>
+      )}
+
+      <div className="pt-1 space-y-2">
         {mode === "open" && (
           <Button
-            size="sm"
-            className="w-full gap-1.5 text-xs"
+            className="w-full gap-1.5"
             onClick={() => onClaim?.(req)}
             disabled={isPendingClaim}
-            data-ocid={`ngo_requests.claim_button.${index}`}
+            data-ocid="ngo_requests.sidebar_claim_button"
           >
-            <ChevronRight size={14} />
+            <ChevronRight size={15} />
             {isPendingClaim
               ? t("ngoRequests.claiming")
               : t("ngoRequests.claim")}
@@ -162,13 +323,12 @@ function RequestCard({
 
         {mode === "active" && req.status === RequestStatus.claimed && (
           <Button
-            size="sm"
-            className="w-full gap-1.5 text-xs"
+            className="w-full gap-1.5"
             onClick={() => onUpdateStatus?.(req, RequestStatus.inTransit)}
             disabled={isPendingUpdate}
-            data-ocid={`ngo_requests.transit_button.${index}`}
+            data-ocid="ngo_requests.sidebar_transit_button"
           >
-            <Truck size={14} />
+            <Truck size={15} />
             {isPendingUpdate
               ? t("ngoRequests.saving")
               : t("ngoRequests.markInTransit")}
@@ -177,20 +337,19 @@ function RequestCard({
 
         {mode === "active" && req.status === RequestStatus.inTransit && (
           <Button
-            size="sm"
-            className="w-full gap-1.5 text-xs bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            className="w-full gap-1.5 bg-secondary text-secondary-foreground hover:bg-secondary/90"
             onClick={() => onUpdateStatus?.(req, RequestStatus.delivered)}
             disabled={isPendingUpdate}
-            data-ocid={`ngo_requests.deliver_button.${index}`}
+            data-ocid="ngo_requests.sidebar_deliver_button"
           >
-            <CheckCircle2 size={14} />
+            <CheckCircle2 size={15} />
             {isPendingUpdate
               ? t("ngoRequests.saving")
               : t("ngoRequests.markDelivered")}
           </Button>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -204,6 +363,8 @@ export default function NGORequests() {
   const [deliverTarget, setDeliverTarget] = useState<ReliefRequest | null>(
     null,
   );
+  const [selectedReq, setSelectedReq] = useState<ReliefRequest | null>(null);
+  const [selectedMode, setSelectedMode] = useState<"open" | "active">("open");
 
   const { data: openRequests, isLoading: loadingOpen } = useQuery<
     ReliefRequest[]
@@ -243,6 +404,7 @@ export default function NGORequests() {
       queryClient.invalidateQueries({ queryKey: ["open-requests"] });
       queryClient.invalidateQueries({ queryKey: ["ngo-requests"] });
       setClaimTarget(null);
+      setSelectedReq(null);
     },
   });
 
@@ -257,6 +419,7 @@ export default function NGORequests() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["ngo-requests"] });
       setDeliverTarget(null);
+      setSelectedReq(null);
     },
   });
 
@@ -294,9 +457,16 @@ export default function NGORequests() {
     }
   }
 
+  function handleSelectReq(req: ReliefRequest, mode: "open" | "active") {
+    setSelectedMode(mode);
+    setSelectedReq((prev) =>
+      prev?.id.toString() === req.id.toString() ? null : req,
+    );
+  }
+
   return (
     <div
-      className="space-y-5 max-w-2xl mx-auto pb-8"
+      className="space-y-5 max-w-2xl md:max-w-4xl lg:max-w-6xl mx-auto pb-8"
       data-ocid="ngo_requests.page"
     >
       {/* Header */}
@@ -318,8 +488,16 @@ export default function NGORequests() {
         </Badge>
       </div>
 
-      <Tabs defaultValue="nearby" data-ocid="ngo_requests.tabs">
-        <TabsList className="w-full grid grid-cols-2">
+      <Tabs
+        defaultValue="nearby"
+        data-ocid="ngo_requests.tabs"
+        onValueChange={(v) => {
+          setSelectedReq(null);
+          setSelectedMode(v as "open" | "active");
+        }}
+      >
+        {/* Desktop: flex row; Mobile: grid 2-col */}
+        <TabsList className="w-full grid grid-cols-2 lg:flex lg:w-auto lg:gap-1">
           <TabsTrigger
             value="nearby"
             className="gap-1.5 text-xs sm:text-sm"
@@ -349,88 +527,147 @@ export default function NGORequests() {
         </TabsList>
 
         {/* Nearby Open Requests */}
-        <TabsContent value="nearby" className="mt-4 space-y-3">
-          {loadingOpen ? (
-            <div className="space-y-3">
-              {[1, 2, 3].map((i) => (
-                <Skeleton key={i} className="h-36 w-full rounded-xl" />
-              ))}
+        <TabsContent value="nearby" className="mt-4">
+          <div className="flex gap-4 items-start">
+            {/* Card list */}
+            <div className="flex-1 min-w-0">
+              {loadingOpen ? (
+                <div className="space-y-3">
+                  {[1, 2, 3].map((i) => (
+                    <Skeleton key={i} className="h-36 w-full rounded-xl" />
+                  ))}
+                </div>
+              ) : sortedOpen.length > 0 ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {sortedOpen.map((req, i) => (
+                    <RequestCard
+                      key={req.id.toString()}
+                      req={req}
+                      index={i + 1}
+                      ngoProfile={ngoProfile!}
+                      mode="open"
+                      userProfiles={userProfiles}
+                      onClaim={setClaimTarget}
+                      isPendingClaim={
+                        claimMutation.isPending &&
+                        claimMutation.variables === req.id
+                      }
+                      isSelected={
+                        selectedReq?.id.toString() === req.id.toString()
+                      }
+                      onSelect={(r) => handleSelectReq(r, "open")}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className="text-center py-14 space-y-2"
+                  data-ocid="ngo_requests.open_empty_state"
+                >
+                  <CheckCircle2
+                    size={36}
+                    className="text-muted-foreground mx-auto opacity-40"
+                  />
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {t("ngoRequests.noOpen")}
+                  </p>
+                  <p className="text-xs text-muted-foreground opacity-70">
+                    {t("ngoRequests.noOpenSubtitle")}
+                  </p>
+                </div>
+              )}
             </div>
-          ) : sortedOpen.length > 0 ? (
-            sortedOpen.map((req, i) => (
-              <RequestCard
-                key={req.id.toString()}
-                req={req}
-                index={i + 1}
-                ngoProfile={ngoProfile!}
-                mode="open"
-                userProfiles={userProfiles}
-                onClaim={setClaimTarget}
-                isPendingClaim={
-                  claimMutation.isPending && claimMutation.variables === req.id
-                }
-              />
-            ))
-          ) : (
-            <div
-              className="text-center py-14 space-y-2"
-              data-ocid="ngo_requests.open_empty_state"
-            >
-              <CheckCircle2
-                size={36}
-                className="text-muted-foreground mx-auto opacity-40"
-              />
-              <p className="text-sm font-medium text-muted-foreground">
-                {t("ngoRequests.noOpen")}
-              </p>
-              <p className="text-xs text-muted-foreground opacity-70">
-                {t("ngoRequests.noOpenSubtitle")}
-              </p>
-            </div>
-          )}
+
+            {/* Desktop action sidebar */}
+            {selectedReq && selectedMode === "open" && ngoProfile && (
+              <div className="hidden lg:block">
+                <ActionSidebar
+                  req={selectedReq}
+                  mode="open"
+                  ngoProfile={ngoProfile}
+                  userProfiles={userProfiles}
+                  onClose={() => setSelectedReq(null)}
+                  onClaim={setClaimTarget}
+                  isPendingClaim={
+                    claimMutation.isPending &&
+                    claimMutation.variables === selectedReq.id
+                  }
+                />
+              </div>
+            )}
+          </div>
         </TabsContent>
 
         {/* My Active Requests */}
-        <TabsContent value="active" className="mt-4 space-y-3">
-          {loadingMine ? (
-            <div className="space-y-3">
-              {[1, 2].map((i) => (
-                <Skeleton key={i} className="h-36 w-full rounded-xl" />
-              ))}
+        <TabsContent value="active" className="mt-4">
+          <div className="flex gap-4 items-start">
+            {/* Card list */}
+            <div className="flex-1 min-w-0">
+              {loadingMine ? (
+                <div className="space-y-3">
+                  {[1, 2].map((i) => (
+                    <Skeleton key={i} className="h-36 w-full rounded-xl" />
+                  ))}
+                </div>
+              ) : activeRequests.length > 0 ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {activeRequests.map((req, i) => (
+                    <RequestCard
+                      key={req.id.toString()}
+                      req={req}
+                      index={i + 1}
+                      ngoProfile={ngoProfile!}
+                      mode="active"
+                      userProfiles={userProfiles}
+                      onUpdateStatus={handleUpdateStatus}
+                      isPendingUpdate={
+                        updateMutation.isPending &&
+                        updateMutation.variables?.id === req.id
+                      }
+                      isSelected={
+                        selectedReq?.id.toString() === req.id.toString()
+                      }
+                      onSelect={(r) => handleSelectReq(r, "active")}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className="text-center py-14 space-y-2"
+                  data-ocid="ngo_requests.active_empty_state"
+                >
+                  <Truck
+                    size={36}
+                    className="text-muted-foreground mx-auto opacity-40"
+                  />
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {t("ngoRequests.noMine")}
+                  </p>
+                  <p className="text-xs text-muted-foreground opacity-70">
+                    {t("ngoRequests.noMineSubtitle")}
+                  </p>
+                </div>
+              )}
             </div>
-          ) : activeRequests.length > 0 ? (
-            activeRequests.map((req, i) => (
-              <RequestCard
-                key={req.id.toString()}
-                req={req}
-                index={i + 1}
-                ngoProfile={ngoProfile!}
-                mode="active"
-                userProfiles={userProfiles}
-                onUpdateStatus={handleUpdateStatus}
-                isPendingUpdate={
-                  updateMutation.isPending &&
-                  updateMutation.variables?.id === req.id
-                }
-              />
-            ))
-          ) : (
-            <div
-              className="text-center py-14 space-y-2"
-              data-ocid="ngo_requests.active_empty_state"
-            >
-              <Truck
-                size={36}
-                className="text-muted-foreground mx-auto opacity-40"
-              />
-              <p className="text-sm font-medium text-muted-foreground">
-                {t("ngoRequests.noMine")}
-              </p>
-              <p className="text-xs text-muted-foreground opacity-70">
-                {t("ngoRequests.noMineSubtitle")}
-              </p>
-            </div>
-          )}
+
+            {/* Desktop action sidebar */}
+            {selectedReq && selectedMode === "active" && ngoProfile && (
+              <div className="hidden lg:block">
+                <ActionSidebar
+                  req={selectedReq}
+                  mode="active"
+                  ngoProfile={ngoProfile}
+                  userProfiles={userProfiles}
+                  onClose={() => setSelectedReq(null)}
+                  onUpdateStatus={handleUpdateStatus}
+                  isPendingUpdate={
+                    updateMutation.isPending &&
+                    updateMutation.variables?.id === selectedReq.id
+                  }
+                />
+              </div>
+            )}
+          </div>
         </TabsContent>
       </Tabs>
 

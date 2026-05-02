@@ -34,10 +34,8 @@ function ConnectionGuard({ children }: { children: React.ReactNode }) {
   const handleRetry = () => {
     setRetrying(true);
     retry();
-    // retrying state clears when isFetching flips back to false via re-render
   };
 
-  // When a new fetch starts, clear the local retrying indicator
   if (!isFetching && retrying) setRetrying(false);
 
   if (!actor && (isFetching || retrying)) {
@@ -147,13 +145,86 @@ function Blobs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <div
-        className="absolute -top-20 -right-16 w-64 h-64 rounded-full opacity-[0.07] blur-3xl"
+        className="absolute -top-20 -right-16 w-64 h-64 lg:w-96 lg:h-96 rounded-full opacity-[0.07] blur-3xl"
         style={{ background: "oklch(0.55 0.22 25)" }}
       />
       <div
-        className="absolute bottom-0 -left-16 w-52 h-52 rounded-full opacity-[0.05] blur-3xl"
+        className="absolute bottom-0 -left-16 w-52 h-52 lg:w-72 lg:h-72 rounded-full opacity-[0.05] blur-3xl"
         style={{ background: "oklch(0.58 0.17 145)" }}
       />
+    </div>
+  );
+}
+
+// ── Left panel (branding + AI) — desktop only ────────────────────────────────
+function LeftPanel() {
+  const { t } = useTranslation();
+  return (
+    <div className="hidden lg:flex flex-col justify-center px-10 xl:px-14 py-10 border-r border-border bg-card/50 min-h-full">
+      {/* Branding */}
+      <div className="flex flex-col items-start gap-4 mb-8">
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-primary">
+          <Shield size={32} className="text-primary-foreground" />
+        </div>
+        <div>
+          <h1 className="text-4xl font-display font-bold text-foreground tracking-tight leading-tight">
+            {APP_NAME}
+          </h1>
+          <p className="text-base text-muted-foreground mt-1">
+            {t("login.subtitle")}
+          </p>
+        </div>
+
+        <a
+          href={`tel:${EMERGENCY_HOTLINE}`}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+          style={{ background: "oklch(0.58 0.22 30)" }}
+          data-ocid="login.emergency_hotline"
+        >
+          <Phone size={15} />
+          {EMERGENCY_HOTLINE}
+        </a>
+
+        <div
+          className="flex items-center gap-2 px-3 py-2 rounded-full border border-border bg-background shadow-sm"
+          data-ocid="login.language_switcher_inline"
+        >
+          <Globe size={14} className="text-muted-foreground shrink-0" />
+          <span className="text-xs text-muted-foreground font-medium">
+            {t("login.selectLanguage", "Select Language")}
+          </span>
+          <LanguageSwitcher className="h-6 px-1 text-xs" />
+          <div className="w-px h-4 bg-border shrink-0" />
+          <ThemeSwitcher />
+        </div>
+      </div>
+
+      {/* AI Assistant */}
+      <div className="w-full">
+        <AIAssistant />
+      </div>
+
+      {/* Decorative info block */}
+      <div className="mt-8 rounded-xl border border-border bg-muted/30 p-4">
+        <p className="text-xs font-semibold text-foreground mb-2 uppercase tracking-wider">
+          {t("login.helpTitle", "Quick Help")}
+        </p>
+        <ul className="space-y-1.5">
+          {[
+            t("login.help.0", "Citizens: register with name & phone"),
+            t("login.help.1", "NGOs: use your org name & phone"),
+            t("login.help.2", "Admins: enter your secret key"),
+          ].map((tip) => (
+            <li
+              key={tip}
+              className="flex items-start gap-2 text-xs text-muted-foreground"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+              {tip}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -164,9 +235,11 @@ function RoleSelectScreen({
 }: { onSelect: (role: "citizen" | "ngo" | "admin") => void }) {
   const { t } = useTranslation();
   return (
-    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-8 min-h-0">
+    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-8 min-h-0 lg:items-start lg:justify-center lg:px-10 xl:px-14">
       <Blobs />
-      <div className="relative flex flex-col items-center gap-2.5 mb-6 w-full max-w-sm">
+
+      {/* Mobile-only header (hidden on desktop — desktop shows LeftPanel) */}
+      <div className="relative flex flex-col items-center gap-2.5 mb-6 w-full max-w-sm lg:hidden">
         <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-primary">
           <Shield size={32} className="text-primary-foreground" />
         </div>
@@ -179,22 +252,16 @@ function RoleSelectScreen({
           </p>
         </div>
 
-        {/* Emergency hotline — visible on first page */}
         <a
           href={`tel:${EMERGENCY_HOTLINE}`}
           className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
           style={{ background: "oklch(0.58 0.22 30)" }}
-          data-ocid="login.emergency_hotline"
         >
           <Phone size={14} />
           {EMERGENCY_HOTLINE}
         </a>
 
-        {/* Inline language switcher + theme toggle — below phone number */}
-        <div
-          className="flex items-center gap-2 px-3 py-2 rounded-full border border-border bg-card shadow-sm"
-          data-ocid="login.language_switcher_inline"
-        >
+        <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-border bg-card shadow-sm">
           <Globe size={14} className="text-muted-foreground shrink-0" />
           <span className="text-xs text-muted-foreground font-medium">
             {t("login.selectLanguage", "Select Language")}
@@ -204,93 +271,96 @@ function RoleSelectScreen({
           <ThemeSwitcher />
         </div>
 
-        {/* AI Assistant panel — below language switcher */}
         <div className="w-full px-1">
           <AIAssistant />
         </div>
       </div>
 
-      <p className="text-sm text-muted-foreground mb-4 font-medium">
-        {t("login.selectRole")}
-      </p>
+      {/* Role selector section */}
+      <div className="relative w-full max-w-sm lg:max-w-none">
+        <p className="text-sm text-muted-foreground mb-4 font-medium text-center lg:text-left">
+          {t("login.selectRole")}
+        </p>
 
-      <div
-        className="relative w-full max-w-sm grid grid-cols-3 gap-3"
-        data-ocid="login.role_cards"
-      >
-        {ROLE_CARD_IDS.map(
-          ({
-            id,
-            icon: Icon,
-            labelKey,
-            descKey,
-            featureKeys,
-            colorClass,
-            borderClass,
-            bgClass,
-            dotClass,
-            hoverBorder,
-          }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => onSelect(id)}
-              className={[
-                "rounded-xl p-3 border flex flex-col gap-2 text-left transition-all cursor-pointer",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                bgClass,
-                borderClass,
-                hoverBorder,
-                "hover:shadow-md hover:scale-[1.02]",
-              ].join(" ")}
-              data-ocid={`login.role_card.${id}`}
-            >
-              <div className="flex items-center gap-1.5">
-                <Icon size={16} className={colorClass} />
-                <p className="text-xs font-bold text-foreground leading-none">
-                  {t(labelKey)}
-                </p>
-              </div>
-              <p className="text-[10px] text-muted-foreground leading-tight">
-                {t(descKey)}
-              </p>
-              <ul className="flex flex-col gap-1 mt-0.5">
-                {featureKeys.map((fk) => (
-                  <li key={fk} className="flex items-center gap-1.5">
-                    <span
-                      className={[
-                        "w-1 h-1 rounded-full shrink-0",
-                        dotClass,
-                      ].join(" ")}
-                    />
-                    <span className="text-[10px] text-muted-foreground leading-tight">
-                      {t(fk)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div
-                className={[
-                  "mt-1 flex items-center gap-1 text-[10px] font-semibold",
-                  colorClass,
-                ].join(" ")}
-              >
-                {t("login.signIn")} <ArrowRight size={10} />
-              </div>
-            </button>
-          ),
-        )}
-      </div>
-
-      <div className="relative mt-6 text-center text-sm text-muted-foreground">
-        {t("login.newUser", { appName: APP_NAME })}{" "}
-        <Link
-          to="/register"
-          className="text-primary font-medium hover:underline"
-          data-ocid="login.register_link"
+        <div
+          className="grid grid-cols-3 gap-3 lg:gap-6"
+          data-ocid="login.role_cards"
         >
-          {t("login.createAccount")}
-        </Link>
+          {ROLE_CARD_IDS.map(
+            ({
+              id,
+              icon: Icon,
+              labelKey,
+              descKey,
+              featureKeys,
+              colorClass,
+              borderClass,
+              bgClass,
+              dotClass,
+              hoverBorder,
+            }) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => onSelect(id)}
+                className={[
+                  "rounded-xl p-3 lg:p-6 border flex flex-col gap-2 lg:gap-3 text-left transition-all cursor-pointer",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  bgClass,
+                  borderClass,
+                  hoverBorder,
+                  "hover:shadow-md hover:scale-[1.02]",
+                ].join(" ")}
+                data-ocid={`login.role_card.${id}`}
+              >
+                <div className="flex items-center gap-1.5 lg:gap-2">
+                  <Icon size={16} className={`${colorClass} lg:w-6 lg:h-6`} />
+                  <p className="text-xs lg:text-sm font-bold text-foreground leading-none">
+                    {t(labelKey)}
+                  </p>
+                </div>
+                <p className="text-[10px] lg:text-xs text-muted-foreground leading-tight">
+                  {t(descKey)}
+                </p>
+                <ul className="flex flex-col gap-1 lg:gap-1.5 mt-0.5">
+                  {featureKeys.map((fk) => (
+                    <li key={fk} className="flex items-center gap-1.5">
+                      <span
+                        className={[
+                          "w-1 h-1 lg:w-1.5 lg:h-1.5 rounded-full shrink-0",
+                          dotClass,
+                        ].join(" ")}
+                      />
+                      <span className="text-[10px] lg:text-xs text-muted-foreground leading-tight">
+                        {t(fk)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  className={[
+                    "mt-1 flex items-center gap-1 text-[10px] lg:text-xs font-semibold",
+                    colorClass,
+                  ].join(" ")}
+                >
+                  {t("login.signIn")}{" "}
+                  <ArrowRight size={10} className="lg:w-3 lg:h-3" />
+                </div>
+              </button>
+            ),
+          )}
+        </div>
+
+        <div className="mt-6 text-center lg:text-left text-sm text-muted-foreground">
+          {t("login.newUser", { appName: APP_NAME })}{" "}
+          <Link
+            to="/register"
+            className="text-primary font-medium hover:underline"
+            data-ocid="login.register_link"
+          >
+            {t("login.createAccount")}
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -339,9 +409,9 @@ function CitizenLoginForm({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12">
+    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12 lg:px-10 xl:px-14">
       <Blobs />
-      <div className="relative w-full max-w-sm">
+      <div className="relative w-full max-w-sm lg:max-w-md">
         <button
           type="button"
           onClick={onBack}
@@ -479,9 +549,9 @@ function NGOLoginForm({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12">
+    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12 lg:px-10 xl:px-14">
       <Blobs />
-      <div className="relative w-full max-w-sm">
+      <div className="relative w-full max-w-sm lg:max-w-md">
         <button
           type="button"
           onClick={onBack}
@@ -623,9 +693,9 @@ function AdminLoginForm({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12">
+    <div className="relative flex flex-col flex-1 items-center justify-center px-4 py-12 lg:px-10 xl:px-14">
       <Blobs />
-      <div className="relative w-full max-w-sm">
+      <div className="relative w-full max-w-sm lg:max-w-md">
         <button
           type="button"
           onClick={onBack}
@@ -711,22 +781,33 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {step === "select" && <RoleSelectScreen onSelect={setStep} />}
-      {step === "citizen" && (
-        <ConnectionGuard>
-          <CitizenLoginForm onBack={() => setStep("select")} />
-        </ConnectionGuard>
-      )}
-      {step === "ngo" && (
-        <ConnectionGuard>
-          <NGOLoginForm onBack={() => setStep("select")} />
-        </ConnectionGuard>
-      )}
-      {step === "admin" && (
-        <ConnectionGuard>
-          <AdminLoginForm onBack={() => setStep("select")} />
-        </ConnectionGuard>
-      )}
+      {/* Desktop two-column wrapper */}
+      <div className="flex flex-col lg:flex-row flex-1 min-h-screen max-w-5xl xl:max-w-6xl mx-auto w-full lg:shadow-xl lg:rounded-none">
+        {/* Left column — branding + AI assistant (desktop only) */}
+        <div className="lg:w-2/5 xl:w-[38%] lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
+          <LeftPanel />
+        </div>
+
+        {/* Right column — role selection / login forms */}
+        <div className="flex-1 flex flex-col">
+          {step === "select" && <RoleSelectScreen onSelect={setStep} />}
+          {step === "citizen" && (
+            <ConnectionGuard>
+              <CitizenLoginForm onBack={() => setStep("select")} />
+            </ConnectionGuard>
+          )}
+          {step === "ngo" && (
+            <ConnectionGuard>
+              <NGOLoginForm onBack={() => setStep("select")} />
+            </ConnectionGuard>
+          )}
+          {step === "admin" && (
+            <ConnectionGuard>
+              <AdminLoginForm onBack={() => setStep("select")} />
+            </ConnectionGuard>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

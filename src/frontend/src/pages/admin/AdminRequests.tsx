@@ -110,8 +110,9 @@ export default function AdminRequests() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-2 items-center">
-            <div className="relative">
+          {/* Desktop: inline filters in a row; mobile: wrapping flex */}
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:flex-wrap lg:gap-3">
+            <div className="relative lg:w-64">
               <Search
                 size={13}
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
@@ -120,7 +121,7 @@ export default function AdminRequests() {
                 placeholder={t("adminRequests.noRequests")}
                 value={sp.q ?? ""}
                 onChange={(e) => updateFilter("q", e.target.value)}
-                className="pl-8 h-8 text-xs w-48"
+                className="pl-8 h-8 text-xs w-full"
                 data-ocid="admin_requests.search_input"
               />
             </div>

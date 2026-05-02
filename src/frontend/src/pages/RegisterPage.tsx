@@ -78,16 +78,21 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Decorative blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-48 rounded-full opacity-[0.06] blur-3xl"
+          className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-48 lg:w-[600px] lg:h-72 rounded-full opacity-[0.06] blur-3xl"
           style={{ background: "oklch(0.55 0.22 25)" }}
+        />
+        <div
+          className="absolute bottom-10 right-10 w-48 h-48 lg:w-72 lg:h-72 rounded-full opacity-[0.04] blur-3xl hidden lg:block"
+          style={{ background: "oklch(0.58 0.17 145)" }}
         />
       </div>
 
-      <div className="relative flex flex-col flex-1 items-center px-4 py-8">
+      <div className="relative flex flex-col flex-1 items-center px-4 py-8 lg:py-12">
         {/* Top bar */}
-        <div className="w-full max-w-3xl mb-8 flex items-center justify-between">
+        <div className="w-full max-w-3xl lg:max-w-5xl mb-8 flex items-center justify-between">
           <button
             type="button"
             onClick={() => navigate({ to: "/login" })}
@@ -99,7 +104,7 @@ export default function RegisterPage() {
           </button>
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground hidden sm:block">
               {t("register.alreadyRegistered")}{" "}
               <Link
                 to="/login"
@@ -113,34 +118,34 @@ export default function RegisterPage() {
         </div>
 
         {/* Title */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl font-display font-bold text-foreground tracking-tight">
+        <div className="text-center mb-10 lg:mb-12">
+          <h1 className="text-3xl lg:text-4xl font-display font-bold text-foreground tracking-tight">
             {t("register.title", { appName: APP_NAME })}
           </h1>
-          <p className="text-muted-foreground mt-2 max-w-md">
+          <p className="text-muted-foreground mt-2 max-w-md lg:max-w-lg lg:text-base">
             {t("register.subtitle")}
           </p>
         </div>
 
         {/* Role cards */}
-        <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="w-full max-w-3xl lg:max-w-5xl grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-5 lg:gap-8">
           {ROLES.map((card) => (
             <button
               key={card.id}
               type="button"
               onClick={() => navigate({ to: card.path })}
-              className={`group bg-card border border-border rounded-2xl p-6 text-left flex flex-col gap-4 ${card.borderHover} hover:shadow-lg transition-smooth cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
+              className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 text-left flex flex-col gap-4 lg:gap-5 ${card.borderHover} hover:shadow-lg lg:hover:shadow-xl transition-smooth cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
               data-ocid={`register.role_card.${card.id}`}
             >
               <div className="flex items-start justify-between">
-                <span className="text-4xl">{card.icon}</span>
+                <span className="text-4xl lg:text-5xl">{card.icon}</span>
                 <Badge variant={card.badgeVariant} className="text-xs">
                   {t(card.badgeKey)}
                 </Badge>
               </div>
 
               <div>
-                <h3 className="text-lg font-display font-semibold text-foreground">
+                <h3 className="text-lg lg:text-xl font-display font-semibold text-foreground">
                   {t(card.titleKey)}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
@@ -148,28 +153,39 @@ export default function RegisterPage() {
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-1.5 flex-1">
+              <ul className="flex flex-col gap-1.5 lg:gap-2 flex-1">
                 {card.featureKeys.map((fk) => (
                   <li
                     key={fk}
-                    className="flex items-start gap-2 text-xs text-muted-foreground"
+                    className="flex items-start gap-2 text-xs lg:text-sm text-muted-foreground"
                   >
                     <CheckCircle2
                       size={13}
-                      className="mt-0.5 shrink-0 text-secondary"
+                      className="mt-0.5 shrink-0 text-secondary lg:w-4 lg:h-4"
                     />
                     <span>{t(fk)}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="w-full mt-auto flex items-center justify-center gap-1.5 rounded-md border border-border bg-transparent px-4 py-2 text-sm font-medium group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-smooth pointer-events-none">
+              <div className="w-full mt-auto flex items-center justify-center gap-1.5 rounded-md border border-border bg-transparent px-4 py-2 lg:py-2.5 text-sm font-medium group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-smooth pointer-events-none">
                 {t(card.registerButtonKey)}
                 <ArrowRight size={15} />
               </div>
             </button>
           ))}
         </div>
+
+        {/* Mobile sign-in link */}
+        <p className="mt-6 text-sm text-muted-foreground sm:hidden">
+          {t("register.alreadyRegistered")}{" "}
+          <Link
+            to="/login"
+            className="text-primary font-medium hover:underline"
+          >
+            {t("register.signIn")}
+          </Link>
+        </p>
       </div>
     </div>
   );

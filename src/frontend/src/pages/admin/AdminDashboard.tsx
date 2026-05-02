@@ -153,15 +153,15 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Key Metrics */}
+      {/* Key Metrics — all 6 in one row on desktop */}
       {isLoading ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {["a", "b", "c", "d", "e", "f"].map((k) => (
             <Skeleton key={k} className="h-28 rounded-xl" />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           <StatCard
             label={t("adminDashboard.stats.totalUsers")}
             value={(analytics?.totalUsers ?? 0n).toString()}
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
           {loadingVerification ? (
             <Skeleton className="h-12 w-full" />
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
               {[
                 {
                   label: t("adminDashboard.verification.totalUsers"),
@@ -259,67 +259,194 @@ export default function AdminDashboard() {
         </CardContent>
       </Card>
 
-      {/* Live Request Feed */}
-      <div data-ocid="admin_dashboard.request_feed.section">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold">
-            {t("adminDashboard.recentRequests")}
-          </h2>
-          <Link
-            to="/admin/requests"
-            className="text-xs text-primary hover:underline flex items-center gap-1"
-            data-ocid="admin_dashboard.view_all_requests.link"
-          >
-            {t("adminDashboard.viewAll")} <ArrowRight size={12} />
-          </Link>
-        </div>
+      {/* Live Request Feed + Quick Stats — two-column on desktop */}
+      <div
+        className="flex flex-col lg:flex-row gap-6"
+        data-ocid="admin_dashboard.main_content.section"
+      >
+        {/* Left: Recent Requests — wider on desktop */}
+        <div
+          className="flex-1 min-w-0"
+          data-ocid="admin_dashboard.request_feed.section"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-semibold">
+              {t("adminDashboard.recentRequests")}
+            </h2>
+            <Link
+              to="/admin/requests"
+              className="text-xs text-primary hover:underline flex items-center gap-1"
+              data-ocid="admin_dashboard.view_all_requests.link"
+            >
+              {t("adminDashboard.viewAll")} <ArrowRight size={12} />
+            </Link>
+          </div>
 
-        {loadingRequests ? (
-          <div className="space-y-2">
-            {["a", "b", "c", "d", "e"].map((k) => (
-              <Skeleton key={k} className="h-14 rounded-lg" />
-            ))}
-          </div>
-        ) : recentRequests.length === 0 ? (
-          <div
-            className="text-center py-8 text-muted-foreground text-sm bg-muted/30 rounded-xl"
-            data-ocid="admin_dashboard.request_feed.empty_state"
-          >
-            {t("adminDashboard.noRequests")}
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {recentRequests.map((req, i) => (
-              <div
-                key={req.id.toString()}
-                className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-2.5"
-                data-ocid={`admin_dashboard.request_feed.item.${i + 1}`}
-              >
-                <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center shrink-0">
-                  <ResourceIcon type={req.resourceType} size={14} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium capitalize truncate">
-                    {req.resourceType} · {t("adminDashboard.qty")}{" "}
+          {loadingRequests ? (
+            <div className="space-y-2">
+              {["a", "b", "c", "d", "e"].map((k) => (
+                <Skeleton key={k} className="h-14 rounded-lg" />
+              ))}
+            </div>
+          ) : recentRequests.length === 0 ? (
+            <div
+              className="text-center py-8 text-muted-foreground text-sm bg-muted/30 rounded-xl"
+              data-ocid="admin_dashboard.request_feed.empty_state"
+            >
+              {t("adminDashboard.noRequests")}
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              {/* Desktop table header */}
+              <div className="hidden lg:grid lg:grid-cols-[2rem_1fr_6rem_5rem_8rem] gap-3 px-4 py-2 text-xs font-medium text-muted-foreground border-b border-border">
+                <span />
+                <span>{t("adminRequests.resource")}</span>
+                <span className="text-right">Qty</span>
+                <span className="text-center">{t("adminRequests.status")}</span>
+                <span className="text-right">{t("adminRequests.created")}</span>
+              </div>
+              {recentRequests.map((req, i) => (
+                <div
+                  key={req.id.toString()}
+                  className="flex items-center gap-3 lg:grid lg:grid-cols-[2rem_1fr_6rem_5rem_8rem] bg-card border border-border rounded-lg px-4 py-2.5 hover:bg-muted/20 transition-colors"
+                  data-ocid={`admin_dashboard.request_feed.item.${i + 1}`}
+                >
+                  <div className="h-7 w-7 lg:h-6 lg:w-6 rounded-md bg-muted flex items-center justify-center shrink-0">
+                    <ResourceIcon type={req.resourceType} size={13} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium capitalize truncate">
+                      {req.resourceType}
+                      <span className="lg:hidden">
+                        {" "}
+                        · {t("adminDashboard.qty")} {req.quantity.toString()}
+                      </span>
+                    </p>
+                    <p className="text-[10px] text-muted-foreground truncate lg:hidden">
+                      {new Date(
+                        Number(req.createdAt) / 1_000_000,
+                      ).toLocaleString()}
+                    </p>
+                  </div>
+                  <p className="hidden lg:block text-xs tabular-nums text-muted-foreground text-right">
                     {req.quantity.toString()}
                   </p>
-                  <p className="text-xs text-muted-foreground truncate">
+                  <div className="hidden lg:flex justify-center">
+                    <StatusBadge status={req.status} size="sm" />
+                  </div>
+                  <p className="hidden lg:block text-[10px] text-muted-foreground text-right">
                     {new Date(
                       Number(req.createdAt) / 1_000_000,
-                    ).toLocaleString()}
+                    ).toLocaleDateString()}
                   </p>
+                  <div className="lg:hidden ml-auto">
+                    <StatusBadge status={req.status} size="sm" />
+                  </div>
                 </div>
-                <StatusBadge status={req.status} size="sm" />
-              </div>
-            ))}
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Right sidebar: Quick Stats + Quick Nav — desktop only */}
+        <div className="lg:w-72 xl:w-80 space-y-4 shrink-0">
+          {/* NGO / Summary card */}
+          <Card
+            className="border-border"
+            data-ocid="admin_dashboard.ngo_summary.section"
+          >
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <Building2 size={14} className="text-primary" />
+                {t("adminDashboard.stats.totalNGOs")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {isLoading ? (
+                <Skeleton className="h-10 w-full" />
+              ) : (
+                <>
+                  <div className="flex items-center justify-between py-2 border-b border-border">
+                    <span className="text-xs text-muted-foreground">
+                      {t("adminDashboard.stats.totalNGOs")}
+                    </span>
+                    <span className="text-sm font-bold">
+                      {(analytics?.totalNGOs ?? 0n).toString()}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-border">
+                    <span className="text-xs text-muted-foreground">
+                      {t("adminDashboard.stats.totalUsers")}
+                    </span>
+                    <span className="text-sm font-bold">
+                      {(analytics?.totalUsers ?? 0n).toString()}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-xs text-muted-foreground">
+                      {t("adminDashboard.stats.delivered")}
+                    </span>
+                    <span className="text-sm font-bold text-secondary">
+                      {(analytics?.deliveredRequests ?? 0n).toString()}
+                    </span>
+                  </div>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Quick Nav */}
+          <div data-ocid="admin_dashboard.quick_nav.section">
+            <h3 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+              Quick Access
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                {
+                  label: t("adminDashboard.quickNav.users"),
+                  href: "/admin/users" as const,
+                  icon: Users,
+                },
+                {
+                  label: t("adminDashboard.quickNav.ngos"),
+                  href: "/admin/ngos" as const,
+                  icon: Building2,
+                },
+                {
+                  label: t("adminDashboard.quickNav.requests"),
+                  href: "/admin/requests" as const,
+                  icon: Activity,
+                },
+                {
+                  label: t("adminDashboard.quickNav.analytics"),
+                  href: "/admin/analytics" as const,
+                  icon: ShieldCheck,
+                },
+              ].map(({ label, href, icon: Icon }, i) => (
+                <Link
+                  key={label}
+                  to={href}
+                  data-ocid={`admin_dashboard.quick_nav.item.${i + 1}`}
+                >
+                  <Card className="border-border hover:shadow-md transition-smooth cursor-pointer">
+                    <CardContent className="p-3 flex items-center gap-2">
+                      <Icon size={14} className="text-primary shrink-0" />
+                      <span className="text-xs font-medium truncate">
+                        {label}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
-      {/* Quick Nav */}
+      {/* Quick Nav — mobile only (hidden on lg+) */}
       <div
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
-        data-ocid="admin_dashboard.quick_nav.section"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:hidden"
+        data-ocid="admin_dashboard.quick_nav_mobile.section"
       >
         {[
           {
@@ -346,7 +473,7 @@ export default function AdminDashboard() {
           <Link
             key={label}
             to={href}
-            data-ocid={`admin_dashboard.quick_nav.item.${i + 1}`}
+            data-ocid={`admin_dashboard.quick_nav_mobile.item.${i + 1}`}
           >
             <Card className="border-border hover:shadow-md transition-smooth cursor-pointer">
               <CardContent className="p-4 flex items-center gap-3">
